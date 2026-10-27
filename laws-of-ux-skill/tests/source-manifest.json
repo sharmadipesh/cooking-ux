@@ -1,0 +1,228 @@
+{
+  "verified_date": "2026-10-27",
+  "inventory_source": "https://lawsofux.com/",
+  "concepts": [
+    {
+      "name": "Aesthetic-Usability Effect",
+      "url": "https://lawsofux.com/aesthetic-usability-effect/",
+      "status": 200,
+      "sha256": "c4964188967316b54cbd9f4ee05d8e8846b2820562673d70ac5c813dd5f9edd7"
+    },
+    {
+      "name": "Choice Overload",
+      "url": "https://lawsofux.com/choice-overload/",
+      "status": 200,
+      "sha256": "80d5192eb19595b9dee359663270ad5d649533948c24f3b76e1efcd4ec8d0c80"
+    },
+    {
+      "name": "Chunking",
+      "url": "https://lawsofux.com/chunking/",
+      "status": 200,
+      "sha256": "80bdd29c7b411abefa57af73dc59183a2e1c9ab4c2c8f8b94024d88a22194c30"
+    },
+    {
+      "name": "Cognitive Bias",
+      "url": "https://lawsofux.com/cognitive-bias/",
+      "status": 200,
+      "sha256": "b1cc86802ffcb4f74152213c93cf7f031f896f44ac2f35eb51c3167da04bb2f5"
+    },
+    {
+      "name": "Cognitive Load",
+      "url": "https://lawsofux.com/cognitive-load/",
+      "status": 200,
+      "sha256": "070a457f90f0c455f8d1fd61d41d787d0fb76c112b299b3674dbad636e9e5e3d"
+    },
+    {
+      "name": "Doherty Threshold",
+      "url": "https://lawsofux.com/doherty-threshold/",
+      "status": 200,
+      "sha256": "85bc6305a323b65900dbd271b85118a75c30241c69529f1cb3e6be330299954a"
+    },
+    {
+      "name": "Fitts’s Law",
+      "url": "https://lawsofux.com/fittss-law/",
+      "status": 200,
+      "sha256": "a1b5e7a3b89336e730d348d48aeb662a056ad7c78a2714ea13a0870fd6944f6d"
+    },
+    {
+      "name": "Flow",
+      "url": "https://lawsofux.com/flow/",
+      "status": 200,
+      "sha256": "2bf35011e31e55587054dae7a0a901a1ae3b6d1c09296ee1537e9eb04c82f168"
+    },
+    {
+      "name": "Goal-Gradient Effect",
+      "url": "https://lawsofux.com/goal-gradient-effect/",
+      "status": 200,
+      "sha256": "3a2bf5d3c9ca8141f80a7b2308981a8b0df13537607091e85ca4791bb1bbe3ca"
+    },
+    {
+      "name": "Hick’s Law",
+      "url": "https://lawsofux.com/hicks-law/",
+      "status": 200,
+      "sha256": "49c24833bd8cde7318052c4b3c99468411f3ea360bcd4e077ea07f49ae5056ce"
+    },
+    {
+      "name": "Jakob’s Law",
+      "url": "https://lawsofux.com/jakobs-law/",
+      "status": 200,
+      "sha256": "2aac7f2e2e15dac987c01f9b6c4ce5cf9acb90c25fd4cb788124eb90d17b23fe"
+    },
+    {
+      "name": "Law of Common Region",
+      "url": "https://lawsofux.com/law-of-common-region/",
+      "status": 200,
+      "sha256": "d6748e040cede179f3842891a3957c6bd3653f37e3aad64e2ef3f629cac25cd1"
+    },
+    {
+      "name": "Law of Proximity",
+      "url": "https://lawsofux.com/law-of-proximity/",
+      "status": 200,
+      "sha256": "02c9fe0f7bbd0f90e4957c7431ae439d2acd6b170602e8e165688a874d8087d4"
+    },
+    {
+      "name": "Law of Prägnanz",
+      "url": "https://lawsofux.com/law-of-pr%C3%A4gnanz/",
+      "status": 200,
+      "sha256": "f2bbb4b4eeb5b205a00c56737cba08e2ecff7ee1d108ab4ba81746888c7e634f"
+    },
+    {
+      "name": "Law of Similarity",
+      "url": "https://lawsofux.com/law-of-similarity/",
+      "status": 200,
+      "sha256": "09a2f13b8462b075a34a674c6955143d9510e5d0fb8c69edeb1025912bc6be4a"
+    },
+    {
+      "name": "Law of Uniform Connectedness",
+      "url": "https://lawsofux.com/law-of-uniform-connectedness/",
+      "status": 200,
+      "sha256": "6dc9f72c6af605499aa389e98834cef628e9c2b20ab164a425955efc6067060c"
+    },
+    {
+      "name": "Mental Model",
+      "url": "https://lawsofux.com/mental-model/",
+      "status": 200,
+      "sha256": "ef59e000fe3753e2d1512ccd46dfdf57bdd79bc2d655e2b890bb7f297447b9cb"
+    },
+    {
+      "name": "Miller’s Law",
+      "url": "https://lawsofux.com/millers-law/",
+      "status": 200,
+      "sha256": "32c64cc71d74f4e80364cfa8f5e1549740b398446c5deb749f75c4c728b928e3"
+    },
+    {
+      "name": "Occam’s Razor",
+      "url": "https://lawsofux.com/occams-razor/",
+      "status": 200,
+      "sha256": "e996dd1c9104eaae834b92ef2f1ce9dcaaeb7a8fbed0a508437ac99565d4e584"
+    },
+    {
+      "name": "Paradox of the Active User",
+      "url": "https://lawsofux.com/paradox-of-the-active-user/",
+      "status": 200,
+      "sha256": "25398b6b0000345631f8cbe4491acbadc24831b27029be36bc82915f9476fdc3"
+    },
+    {
+      "name": "Pareto Principle",
+      "url": "https://lawsofux.com/pareto-principle/",
+      "status": 200,
+      "sha256": "f3c5f1d48556f79545c5585becec4a667d0caf5909c9478df7450b7931d685a7"
+    },
+    {
+      "name": "Parkinson’s Law",
+      "url": "https://lawsofux.com/parkinsons-law/",
+      "status": 200,
+      "sha256": "b9ba6e2f6ad1eda79540f8a03cd19f8d133ade08c3e3c58d7ea36edd38bf8bfe"
+    },
+    {
+      "name": "Peak-End Rule",
+      "url": "https://lawsofux.com/peak-end-rule/",
+      "status": 200,
+      "sha256": "63900258cce932323cd4c36852b58feed39ad5bc099d7d00314d2f229a26fe86"
+    },
+    {
+      "name": "Postel’s Law",
+      "url": "https://lawsofux.com/postels-law/",
+      "status": 200,
+      "sha256": "0b6b518079841b0ca5ae4ab04a1ee236be7f567fb71d9b42791747cbf3deb078"
+    },
+    {
+      "name": "Selective Attention",
+      "url": "https://lawsofux.com/selective-attention/",
+      "status": 200,
+      "sha256": "fca7fcdc0ebe0dcb85f99ed33ea065d4de34f3e4a5d2e99c49787e37d1b702a1"
+    },
+    {
+      "name": "Serial Position Effect",
+      "url": "https://lawsofux.com/serial-position-effect/",
+      "status": 200,
+      "sha256": "0bccbe1e9750670397825c4c56d552c0ccbe03d32ebda7bbe0ec9180616b6014"
+    },
+    {
+      "name": "Tesler’s Law",
+      "url": "https://lawsofux.com/teslers-law/",
+      "status": 200,
+      "sha256": "771c5b195e2f0fe4f848d4246d15794e219f98b66079425d5314e547acf10999"
+    },
+    {
+      "name": "Von Restorff Effect",
+      "url": "https://lawsofux.com/von-restorff-effect/",
+      "status": 200,
+      "sha256": "690adaf053cea3fe45d59e76ef72f96737a736512c768a428991f3a6bfc05417"
+    },
+    {
+      "name": "Working Memory",
+      "url": "https://lawsofux.com/working-memory/",
+      "status": 200,
+      "sha256": "798ee8b437f006e780e464d6826b768edf2ee902063700451128d5534cac8c9d"
+    },
+    {
+      "name": "Zeigarnik Effect",
+      "url": "https://lawsofux.com/zeigarnik-effect/",
+      "status": 200,
+      "sha256": "1166d432f13ff3dfc32aa49555a111d058dbd257441fae042e6834e26a28d878"
+    }
+  ],
+  "articles": [
+    {
+      "url": "https://lawsofux.com/articles/2024/familiar-vs-novel/",
+      "status": 200,
+      "sha256": "4d34c23ae9808136cd13e28960420e41d6caafbb5d67f4cd8d6a62b91afdfb23"
+    },
+    {
+      "url": "https://lawsofux.com/articles/2024/onboarding-for-active-users/",
+      "status": 200,
+      "sha256": "f831e4abc9b630446c273b5b4403aefb296d697b7f3ef8e29d91105e718b0713"
+    },
+    {
+      "url": "https://lawsofux.com/articles/2024/teslers-law/",
+      "status": 200,
+      "sha256": "8bd8752c60cad26c315dd007a4fb2b2c4f0768a371961fad2a9e7c21e5f514eb"
+    },
+    {
+      "url": "https://lawsofux.com/articles/2020/ux-psychology-google-search/",
+      "status": 200,
+      "sha256": "1227219552d3593ead5a0898fd516de1fba0a673839805382f307a60b37f637c"
+    },
+    {
+      "url": "https://lawsofux.com/articles/2020/peak-end-rule/",
+      "status": 200,
+      "sha256": "ecb7531147e69f5493a6fc2a91174e1ce9f19d7b3f8ea2da5efe1590cf0dab68"
+    },
+    {
+      "url": "https://lawsofux.com/articles/2018/the-psychology-of-design/",
+      "status": 200,
+      "sha256": "6f76583bf30cbbd2d6a9c2c1e4d40455264611b415962cfac81c4b060f0583b8"
+    },
+    {
+      "url": "https://lawsofux.com/articles/2017/designing-with-occams-razor/",
+      "status": 200,
+      "sha256": "794efcc50bfe2553073bdc5d9c8e36f1a236fd4ca687615afb6dd541ead4b9c5"
+    },
+    {
+      "url": "https://lawsofux.com/articles/2015/design-principles-for-reducing-cognitive-load/",
+      "status": 200,
+      "sha256": "287bfca1943108cf660791e7b54b837f760c71a9719bde0fca3ba0c071204c0c"
+    }
+  ]
+}
