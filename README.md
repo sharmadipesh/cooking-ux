@@ -124,6 +124,7 @@ A useful recommendation has a location, a reason, and a way to check it. “Make
 | [Examples](laws-of-ux-skill/examples/) | Practical decisions, an audit, and implementation guidance |
 | [Validation report](laws-of-ux-skill/tests/validation-report.md) | Checks performed and their limitations |
 | [Downloadable ZIP](laws-of-ux-skill.zip) | The complete portable skill package |
+| [Changelog](CHANGELOG.md) | Skill versions and what changed |
 
 ## 🧪 Check the ingredients
 
@@ -151,4 +152,4 @@ Download [ux-audit-skill.zip](ux-audit-skill.zip) for the standalone audit packa
 
 This is an independent project informed by Jon Yablonski’s **Laws of UX**. It is not affiliated with or endorsed by Laws of UX. Source coverage was verified on October 27, 2026.
 
-The package contains original explanations, workflows, and examples, with no copied article collection or artwork. The [MIT license](laws-of-ux-skill/LICENSE) covers original package contributions only. Upstream website content has its own CC BY-NC-ND 4.0 license and is not relicensed here. See [source attribution and research scope](laws-of-ux-skill/references/source-links.md).
+The package contains original explanations, workflows, and examples, with no copied article collection or artwork. The [MIT license](LICENSE) at the repository root, with a copy in each skill folder, covers original contributions only. Each SKILL.md declares its version; see the [changelog](CHANGELOG.md). Upstream website content has its own CC BY-NC-ND 4.0 license and is not relicensed here. See [source attribution and research scope](laws-of-ux-skill/references/source-links.md).

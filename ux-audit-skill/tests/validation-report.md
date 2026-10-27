@@ -5,7 +5,7 @@ Date: 2026-10-27. This report records checks actually performed. Structural chec
 ## Package checks
 
 - Offline package validation passes required files, metadata/name/context budget, local links, example JSON structure, and evidence-reference checks.
-- All **14 Python regression tests** pass: nine report/package tests and five archive tests. They detect unknown/duplicate evidence, missing priority reasons, malformed enum/container data, missing coverage, mixed severity/priority types, stale/missing archives, unexpected generated dependencies, and missing members. A no-findings report is allowed when its scope and coverage are explicit.
+- All **15 Python regression tests** pass: ten report/package tests and five archive tests. They detect missing version metadata, unknown/duplicate evidence, missing priority reasons, malformed enum/container data, missing coverage, mixed severity/priority types, stale/missing archives, unexpected generated dependencies, and missing members. A no-findings report is allowed when its scope and coverage are explicit.
 - The independent skill-creator metadata validator is run before release. It checks skill metadata, not semantic correctness.
 - The standalone ZIP is rebuilt after content changes and checked for exact member set, CRC, and byte equality. Generated caches/dependencies are excluded. Both skill packages are checked by the repository CI workflow on Linux/Windows and Python 3.9/3.13; remote run conclusions must be verified separately.
 

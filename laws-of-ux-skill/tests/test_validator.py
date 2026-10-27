@@ -51,6 +51,11 @@ class IntegrityTests(unittest.TestCase):
         self.assertTrue(any('Missing required file' in e for e in validator.validate(self.root)))
 
 
+    def test_missing_version_metadata_is_detected(self):
+        file = self.root / 'SKILL.md'
+        file.write_text(file.read_text(encoding='utf-8').replace('  version: "', '  release: "', 1), encoding='utf-8')
+        self.assertTrue(any('metadata.version' in e for e in validator.validate(self.root)))
+
     def test_non_utf8_locale_can_validate_package(self):
         env = dict(os.environ, LC_ALL='C', PYTHONUTF8='0', PYTHONCOERCECLOCALE='0')
         result = subprocess.run([sys.executable, '-B', str(self.root / 'scripts/validate.py')],

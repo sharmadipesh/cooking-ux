@@ -100,6 +100,8 @@ def validate_package(root=ROOT):
         if values.get('name')!=root.name or not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*',values.get('name','')):
             errors.append('Invalid skill name')
         if not 1<=len(values.get('description',''))<=1024:errors.append('Invalid description')
+        if not re.search(r'^license: \S',front.group(1),re.M):errors.append('Missing license frontmatter')
+        if not re.search(r'^metadata:\n(?:  \S.*\n)*?  version: "\d+\.\d+\.\d+"$',front.group(1),re.M):errors.append('Missing or invalid metadata.version frontmatter')
     if len(skill.split())>1400:errors.append('Skill entrypoint exceeds 1400-word context budget')
     for file in root.rglob('*.md'):
         if any(part in IGNORED for part in file.relative_to(root).parts):continue
@@ -127,7 +129,7 @@ def main():
         except (OSError,ValueError) as exc:errors.append('Cannot read report: '+str(exc))
     for error in errors:print('FAIL: '+error,file=sys.stderr)
     if errors:return 1
-    print('PASS: skill metadata, required files, local links, report structure and evidence references')
+    print('PASS: skill metadata and version, required files, local links, report structure and evidence references')
     print('NOTE: structural checks cannot verify observations, audit quality, or conformance.')
     return 0
 

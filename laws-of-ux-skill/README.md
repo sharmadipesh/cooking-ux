@@ -71,7 +71,7 @@ For Claude Code, replace `$laws-of-ux-skill` with `/laws-of-ux-skill`. In a gene
 
 Share the complete folder or laws-of-ux-skill.zip with its LICENSE and source documentation. Recipients can inspect Markdown before installing; nothing needs to execute during installation. No personal data, secrets, source artwork, or source article copies belong in the package.
 
-To update: compare the English homepage’s linked concept set with the inventory; inspect added/changed detail pages and articles; verify definitions and caveats; update the inventory, affected entries, source-manifest date/status/hashes, and source notes together. Distinguish new homepage entries from article concepts and supplementary sources. Update agent installation conventions only after checking official documentation. Record inaccessible sources explicitly instead of presenting them as verified.
+To update: compare the English homepage’s linked concept set with the inventory; inspect added/changed detail pages and articles; verify definitions and caveats; update the inventory, affected entries, source-manifest date/status/hashes, and source notes together. Distinguish new homepage entries from article concepts and supplementary sources. Update agent installation conventions only after checking official documentation. Record inaccessible sources explicitly instead of presenting them as verified. When package content changes, bump `metadata.version` in SKILL.md so an installed copy can be compared with the repository.
 
 Run offline structural validation from the package directory with Python 3.9+:
 

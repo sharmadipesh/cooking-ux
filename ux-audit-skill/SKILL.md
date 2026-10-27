@@ -1,6 +1,10 @@
 ---
 name: ux-audit-skill
 description: Use when asked for a UX audit or usability review of Figma designs, prototypes, user flows, screenshots, or live website URLs. Evaluate the experience and produce an evidence-based, prioritized report with practical recommendations. Use for audit deliverables rather than default frontend implementation.
+license: MIT. LICENSE has complete terms
+metadata:
+  author: sharmadipesh/cooking-ux
+  version: "1.0.0"
 ---
 # UX Audit Skill
 

@@ -82,6 +82,10 @@ def validate(root=ROOT):
             errors.append('Invalid or mismatched skill name')
         if not 1 <= len(metadata.get('description', '')) <= 1024:
             errors.append('Invalid skill description')
+        if not re.search(r'^license: \S', front.group(1), re.M):
+            errors.append('Missing license frontmatter')
+        if not re.search(r'^metadata:\n(?:  \S.*\n)*?  version: "\d+\.\d+\.\d+"$', front.group(1), re.M):
+            errors.append('Missing or invalid metadata.version frontmatter')
     if len(skill.split()) > 1500:
         errors.append('Entrypoint exceeds package context budget (1500 words)')
     try:
@@ -164,7 +168,7 @@ def main():
         print('FAIL: ' + error, file=sys.stderr)
     if errors:
         return 1
-    print('PASS: package structure, 30 complete concept entries, attribution coverage, local links/anchors, seven scenario rubrics, and entrypoint budget')
+    print('PASS: package structure, versioned frontmatter, 30 complete concept entries, attribution coverage, local links/anchors, seven scenario rubrics, and entrypoint budget')
     print('NOTE: structural checks do not execute behavioral scenarios or establish UX outcomes.')
     return 0
 

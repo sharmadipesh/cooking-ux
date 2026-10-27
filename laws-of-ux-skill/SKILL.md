@@ -1,6 +1,10 @@
 ---
 name: laws-of-ux-skill
 description: Apply relevant UX principles when designing pages, reviewing interfaces, improving user flows, or implementing frontend usability changes. Use for UI hierarchy, navigation, forms, feedback, cognitive load, and evidence-informed design trade-offs.
+license: MIT. LICENSE has the scope and third-party notice
+metadata:
+  author: sharmadipesh/cooking-ux
+  version: "1.0.0"
 ---
 # Laws of UX in practice
 

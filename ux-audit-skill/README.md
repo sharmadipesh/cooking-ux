@@ -126,7 +126,7 @@ python3 -B -m unittest discover -s ux-audit-skill/tests -p 'test_*.py' -v
 python3 -B ux-audit-skill/scripts/package.py --check
 ```
 
-From the repository parent, rebuild the sibling ZIP with `python3 -B ux-audit-skill/scripts/package.py` after changes. Share the whole folder or `ux-audit-skill.zip`, including LICENSE, references, and templates. The optional structured JSON report can be checked with `scripts/validate.py --report path/to/report.json`; it verifies structure and evidence references, not whether observations are true or recommendations are good. Markdown remains the normal deliverable.
+From the repository parent, rebuild the sibling ZIP with `python3 -B ux-audit-skill/scripts/package.py` after changes, and bump `metadata.version` in SKILL.md when package content changes. Share the whole folder or `ux-audit-skill.zip`, including LICENSE, references, and templates. The optional structured JSON report can be checked with `scripts/validate.py --report path/to/report.json`; it verifies structure and evidence references, not whether observations are true or recommendations are good. Markdown remains the normal deliverable.
 
 See [scenarios](tests/scenarios.md) and [validation evidence](tests/validation-report.md) for real checks and limits. Synthetic fixtures do not establish authenticated Figma integration, production acceptance, or full accessibility conformance.
 
