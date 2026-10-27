@@ -1,8 +1,36 @@
-# 🍳 Cooking UX
+<a id="top"></a>
 
-**Good interfaces, fewer “wait… what?” moments.**
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/cooking-ux-banner-dark.jpg">
+  <img src="assets/cooking-ux-banner-light.jpg" alt="Cooking UX — Better UX. Less guesswork. UX skills for Claude and ChatGPT." width="100%">
+</picture>
 
-Give your AI a UX recipe book and a second pair of eyes. Because “the button is technically there” is a surprisingly low bar.
+<h1 align="center">🍳 Cooking UX</h1>
+
+<p align="center">
+  <b>Good interfaces, fewer “wait… what?” moments.</b><br>
+  Give your AI a UX recipe book and a second pair of eyes.<br>
+  <sub>Because “the button is technically there” is a surprisingly low bar.</sub>
+</p>
+
+<p align="center">
+  <a href="https://github.com/sharmadipesh/cooking-ux/actions/workflows/validate.yml"><img alt="Validate skill" src="https://github.com/sharmadipesh/cooking-ux/actions/workflows/validate.yml/badge.svg"></a>
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-8FA58A"></a>
+  <a href="#-pick-your-recipe"><img alt="Skills: 2" src="https://img.shields.io/badge/skills-2-F4A47C"></a>
+  <a href="laws-of-ux-skill/references/ux-laws-index.md"><img alt="Laws of UX: 30 concepts" src="https://img.shields.io/badge/Laws_of_UX-30_concepts-F4A47C"></a>
+  <a href="#-tell-your-agent-what-to-cook"><img alt="Works with Codex and Claude Code" src="https://img.shields.io/badge/works_with-Codex_·_Claude_Code-1F2328"></a>
+</p>
+
+<p align="center">
+  <a href="#-install-apron-on-one-command"><b>Install</b></a> ·
+  <a href="#-pick-your-recipe"><b>Pick a skill</b></a> ·
+  <a href="#-tell-your-agent-what-to-cook"><b>Prompts</b></a> ·
+  <a href="#-a-taste-of-the-output"><b>Example output</b></a> ·
+  <a href="#-open-the-recipe-book"><b>Docs</b></a> ·
+  <a href="#-check-the-ingredients"><b>Checks</b></a>
+</p>
+
+---
 
 Cooking UX contains two portable skills: practical design guidance drawn from 30 [Laws of UX](https://lawsofux.com/) concepts, and a dedicated evidence-based UX Audit Skill for Figma, user flows, and live web pages.
 
@@ -10,37 +38,110 @@ Use them with Codex, Claude Code, other compatible coding agents, or an AI assis
 
 ## 📋 Pick your recipe
 
-| Skill | Use it for | Start here |
-|---|---|---|
-| `laws-of-ux-skill` | Design and implement better interfaces using relevant UX principles | [Guide](laws-of-ux-skill/README.md) |
-| `ux-audit-skill` | Audit Figma designs, user flows, and live pages; report evidence, severity, priority, recommendations, and checks | [Audit guide](ux-audit-skill/README.md) |
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### 🧑‍🍳 Laws of UX Skill
+
+`laws-of-ux-skill`
+
+Design and implement better interfaces using relevant UX principles.
+
+**Order this when you are** building a new screen or improving one that already exists.
+
+**[Open the guide →](laws-of-ux-skill/README.md)**
+
+</td>
+<td width="50%" valign="top">
+
+### 🔍 UX Audit Skill
+
+`ux-audit-skill`
+
+Audit Figma designs, user flows, and live pages; report evidence, severity, priority, recommendations, and checks.
+
+**Order this when you are** investigating friction in a design or journey.
+
+**[Open the audit guide →](ux-audit-skill/README.md)**
+
+</td>
+</tr>
+</table>
 
 ### From “something feels off” to a useful next step
 
 ```mermaid
 flowchart TD
-    A["What are we cooking?"] --> B{"Your goal"}
-    B -->|"Build or improve"| C["Laws of UX Skill"]
-    B -->|"Review a design or journey"| D["UX Audit Skill"]
+    A["🍳 What are we cooking?"] --> B{"Your goal"}
+    B -->|"Build or improve"| C["🧑‍🍳 Laws of UX Skill"]
+    B -->|"Review a design or journey"| D["🔍 UX Audit Skill"]
     C --> E["Apply relevant UX principles"]
-    E --> F["Implement and verify changes"]
+    E --> F["✅ Implement and verify changes"]
     D --> G["Inspect accessible sources and capture evidence"]
     G --> H["Prioritize findings and practical fixes"]
-    H --> I["Hand off checks for the improvements"]
+    H --> I["✅ Hand off checks for the improvements"]
+
+    classDef start fill:#FFF4EC,stroke:#F4A47C,stroke-width:2px,color:#1F2328
+    classDef build fill:#FCE3D3,stroke:#E07B4C,color:#1F2328
+    classDef audit fill:#E3ECDF,stroke:#6E8B68,color:#1F2328
+    class A,B start
+    class C,E,F build
+    class D,G,H,I audit
 ```
 
-Building? Start with the design skill. Investigating friction? Start with the audit skill. They work independently; install either or both.
+> [!TIP]
+> **Building?** Start with the design skill. **Investigating friction?** Start with the audit skill. They work independently; install either or both.
 
 ## 🧑‍🍳 What’s on the menu?
 
-- Build clearer landing pages, dashboards, and application screens.
-- Improve navigation, forms, tables, empty states, and user flows.
-- Reduce unnecessary choices, confusion, and memory demands.
-- Review an interface and prioritize actionable improvements.
-- Refactor frontend components while preserving working behavior.
-- Consider accessibility, responsive layouts, feedback, and error recovery.
+<table>
+<tr>
+<td width="33%" valign="top">
 
-Every Laws of UX concept includes an original explanation, practical applications, implementation guidance, good and bad examples, limitations, and a source link. Both skills can review supplied material offline. Live URLs and Figma files still need suitable tools and authorized access.
+**🏗️ Build**<br>
+Clearer landing pages, dashboards, and application screens.
+
+</td>
+<td width="33%" valign="top">
+
+**🧭 Improve**<br>
+Navigation, forms, tables, empty states, and user flows.
+
+</td>
+<td width="33%" valign="top">
+
+**🧠 Simplify**<br>
+Reduce unnecessary choices, confusion, and memory demands.
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+**🔍 Review**<br>
+Review an interface and prioritize actionable improvements.
+
+</td>
+<td valign="top">
+
+**♻️ Refactor**<br>
+Refactor frontend components while preserving working behavior.
+
+</td>
+<td valign="top">
+
+**♿ Include**<br>
+Consider accessibility, responsive layouts, feedback, and error recovery.
+
+</td>
+</tr>
+</table>
+
+Every Laws of UX concept includes an original explanation, practical applications, implementation guidance, good and bad examples, limitations, and a source link. Both skills can review supplied material offline.
+
+> [!NOTE]
+> Live URLs and Figma files still need suitable tools and authorized access.
 
 ## 🚀 Install: apron on, one command
 
@@ -50,86 +151,110 @@ Run this in your project’s terminal:
 npx skills add https://github.com/sharmadipesh/cooking-ux
 ```
 
-Select `laws-of-ux-skill`, `ux-audit-skill`, or both, and your coding agent when prompted. The installer adds the complete skill folder, including its references and workflows. No manual clone or file copying is needed. It requires Node.js 22.20 or later and Git. This uses the third-party [open-source Skills CLI](https://github.com/vercel-labs/skills).
+Select `laws-of-ux-skill`, `ux-audit-skill`, or both, and your coding agent when prompted. The installer adds the complete skill folder, including its references and workflows. No manual clone or file copying is needed.
 
-Install only the audit skill:
+> [!IMPORTANT]
+> Requires **Node.js 22.20 or later** and **Git**. This uses the third-party [open-source Skills CLI](https://github.com/vercel-labs/skills).
+
+**🔍 Install only the audit skill:**
 
 ```sh
 npx skills add https://github.com/sharmadipesh/cooking-ux --skill ux-audit-skill
 ```
 
-Want the selected skill available across projects? Add `-g`:
+**🌍 Want the selected skill available across projects?** Add `-g`:
 
 ```sh
 npx skills add https://github.com/sharmadipesh/cooking-ux -g
 ```
 
-## Prefer to paste one link?
+### 🔗 Prefer to paste one link?
 
-Copy this message into an agent that supports repository access and skill installation:
+Copy one of these messages into an agent that supports repository access and skill installation.
+
+<details>
+<summary><b>🧑‍🍳 Install the Laws of UX Skill</b></summary>
+
+<br>
 
 > Install the UX skill from https://github.com/sharmadipesh/cooking-ux into this project for my coding agent. Install the complete laws-of-ux-skill folder, including its references and workflows. Preserve any existing installation and report the installation path.
 
-For the dedicated audit skill, paste:
+</details>
+
+<details>
+<summary><b>🔍 Install the UX Audit Skill</b></summary>
+
+<br>
 
 > Install the UX Audit Skill from https://github.com/sharmadipesh/cooking-ux into this project for my coding agent. Install the complete ux-audit-skill folder, including its references and templates. Preserve any existing installation and report the installation path.
 
-A repository link alone cannot automatically install files in every AI product. Your agent needs installation tools and access to your project. For chat assistants without installation support, attach the [design ZIP](laws-of-ux-skill.zip) or [audit ZIP](ux-audit-skill.zip) and ask them to read SKILL.md and the relevant files.
+</details>
+
+> [!NOTE]
+> A repository link alone cannot automatically install files in every AI product. Your agent needs installation tools and access to your project. For chat assistants without installation support, attach the [design ZIP](laws-of-ux-skill.zip) or [audit ZIP](ux-audit-skill.zip) and ask them to read SKILL.md and the relevant files.
 
 ## 💬 Tell your agent what to cook
 
-After installation, start a new agent session if needed. In Codex, try:
+After installation, start a new agent session if needed.
+
+| | Codex | Claude Code |
+|---|---|---|
+| 🧑‍🍳 Design and build | `$laws-of-ux-skill` | `/laws-of-ux-skill` |
+| 🔍 Audit | `$ux-audit-skill` | `/ux-audit-skill` |
+
+**🧑‍🍳 Improve a dashboard** (Codex):
 
 > Use $laws-of-ux-skill to improve this dashboard. Reuse the existing design system, preserve its functionality, and make the most important information and actions easier to find. Implement the changes and report what you verified.
 
-In Claude Code, use `/laws-of-ux-skill` instead. Automatic discovery depends on the product and its settings. See [the full guide](laws-of-ux-skill/README.md) for manual installation and offline usage.
-
-For an audit in Codex:
+**🔍 Run an audit** (Codex):
 
 > Use $ux-audit-skill to audit [Figma link, website URL, or attached flow] for [audience and task]. Cite screens/components/steps, separate observed issues from hypotheses, and prioritize practical improvements. Stop before real transactions or data changes.
 
-Use `/ux-audit-skill` in Claude Code. See the [audit report template](ux-audit-skill/templates/audit-report.md), [example artifact review](ux-audit-skill/examples/artifact-audit.md), and [tested live sandbox report](evaluation/ux-audit-skill/results/live/report.md).
+Automatic discovery depends on the product and its settings. See [the full guide](laws-of-ux-skill/README.md) for manual installation and offline usage, and for audits, the [audit report template](ux-audit-skill/templates/audit-report.md), [example artifact review](ux-audit-skill/examples/artifact-audit.md), and [tested live sandbox report](evaluation/ux-audit-skill/results/live/report.md).
 
 ## 🥣 A taste of the output
 
-**The problem:** a form rejects your email, then clears everything you typed. The interface has apparently chosen amnesia.
+> [!WARNING]
+> **The problem:** a form rejects your email, then clears everything you typed. The interface has apparently chosen amnesia.
 
 Here’s how an audit turns that frustration into work someone can actually pick up. This abbreviated example comes from the [tested local sandbox report](evaluation/ux-audit-skill/results/live/report.md), not a production site.
 
-| A useful finding needs… | Example |
-|---|---|
-| A precise observation | After a 422 rejection, both fields become empty. |
-| Evidence you can inspect | Report evidence E05, E09, E13 and E14; request → rejection → retry. |
-| User impact | Users must re-enter information to correct an email-related error. Impact is inferred; abandonment was not measured. |
-| Separate ratings | **Moderate severity · P1 priority · High confidence** in the clearing behavior. |
-| A practical fix | Keep the email editable, associate the error with it, and handle password clearing according to the agreed policy. |
-| A finish line | Retry by keyboard and on mobile; confirm email remains and only intended corrections are required. |
+| | A useful finding needs… | Example |
+|:-:|---|---|
+| 👀 | **A precise observation** | After a 422 rejection, both fields become empty. |
+| 🧾 | **Evidence you can inspect** | Report evidence E05, E09, E13 and E14; request → rejection → retry. |
+| 🙋 | **User impact** | Users must re-enter information to correct an email-related error. Impact is inferred; abandonment was not measured. |
+| 🌡️ | **Separate ratings** | **Moderate severity · P1 priority · High confidence** in the clearing behavior. |
+| 🛠️ | **A practical fix** | Keep the email editable, associate the error with it, and handle password clearing according to the agreed policy. |
+| 🏁 | **A finish line** | Retry by keyboard and on mobile; confirm email remains and only intended corrections are required. |
 
 For implementation, a similarly focused request is:
 
 > Use $laws-of-ux-skill to improve this form’s labels and error recovery. Reuse our components, preserve validation rules, and verify filled, rejected, and retry states on mobile and with a keyboard.
 
-A useful recommendation has a location, a reason, and a way to check it. “Make it pop” can stay in the seasoning cupboard.
+<p align="center"><i>A useful recommendation has a location, a reason, and a way to check it.<br>“Make it pop” can stay in the seasoning cupboard. 🧂</i></p>
 
 ## 📚 Open the recipe book
 
-| Start here | What you will find |
-|---|---|
-| [Skill instructions](laws-of-ux-skill/SKILL.md) | The decision process and reference routing |
-| [Full usage guide](laws-of-ux-skill/README.md) | Installation, prompts, sharing, offline use, and updates |
-| [30-concept inventory](laws-of-ux-skill/references/ux-laws-index.md) | Verified concepts and original source links |
-| [Component playbook](laws-of-ux-skill/references/component-playbook.md) | Concrete states, decisions, and checks for common UI patterns |
-| [Decision guidance](laws-of-ux-skill/references/decision-and-validation.md) | Evidence, competing principles, and claim-appropriate validation |
-| [Workflows](laws-of-ux-skill/workflows/) | Design, audit, improvement, and implementation |
-| [Examples](laws-of-ux-skill/examples/) | Practical decisions, an audit, and implementation guidance |
-| [Validation report](laws-of-ux-skill/tests/validation-report.md) | Checks performed and their limitations |
-| [Evaluation evidence](evaluation/README.md) | Sandbox fixtures, browser runner, audited reports, and screenshots, kept outside the installed packages |
-| [Downloadable ZIP](laws-of-ux-skill.zip) | The complete portable skill package |
-| [Changelog](CHANGELOG.md) | Skill versions and what changed |
+| | Start here | What you will find |
+|:-:|---|---|
+| 📜 | [Skill instructions](laws-of-ux-skill/SKILL.md) | The decision process and reference routing |
+| 📖 | [Full usage guide](laws-of-ux-skill/README.md) | Installation, prompts, sharing, offline use, and updates |
+| 🗂️ | [30-concept inventory](laws-of-ux-skill/references/ux-laws-index.md) | Verified concepts and original source links |
+| 🧩 | [Component playbook](laws-of-ux-skill/references/component-playbook.md) | Concrete states, decisions, and checks for common UI patterns |
+| ⚖️ | [Decision guidance](laws-of-ux-skill/references/decision-and-validation.md) | Evidence, competing principles, and claim-appropriate validation |
+| 🔄 | [Workflows](laws-of-ux-skill/workflows/) | Design, audit, improvement, and implementation |
+| 💡 | [Examples](laws-of-ux-skill/examples/) | Practical decisions, an audit, and implementation guidance |
+| ✅ | [Validation report](laws-of-ux-skill/tests/validation-report.md) | Checks performed and their limitations |
+| 🧪 | [Evaluation evidence](evaluation/README.md) | Sandbox fixtures, browser runner, audited reports, and screenshots, kept outside the installed packages |
+| 📦 | [Downloadable ZIP](laws-of-ux-skill.zip) | The complete portable skill package |
+| 📝 | [Changelog](CHANGELOG.md) | Skill versions and what changed |
 
 ## 🧪 Check the ingredients
 
-The optional checks require Python 3.9+ and no third-party Python packages:
+The optional checks require Python 3.9+ and no third-party Python packages.
+
+### 🧑‍🍳 Laws of UX Skill
 
 ```sh
 python3 -B laws-of-ux-skill/scripts/validate.py
@@ -137,9 +262,12 @@ python3 -B -m unittest discover -s laws-of-ux-skill/tests -p 'test_*.py' -v
 python3 -B laws-of-ux-skill/scripts/package.py --check
 ```
 
-The package includes seven design scenarios. The repository’s [evaluation folder](evaluation/README.md) holds two implemented sandbox interfaces and 13 browser acceptance checks; see [optional browser setup](evaluation/laws-of-ux-skill/browser/README.md) and [implementation evidence](evaluation/laws-of-ux-skill/implementation-evaluation.md). Browser checks exercise contracts, states, keyboard paths, and three viewport widths. They do not establish production integration, user outcomes, or full accessibility conformance.
+The package includes **seven design scenarios**. The repository’s [evaluation folder](evaluation/README.md) holds **two implemented sandbox interfaces** and **13 browser acceptance checks**; see [optional browser setup](evaluation/laws-of-ux-skill/browser/README.md) and [implementation evidence](evaluation/laws-of-ux-skill/implementation-evaluation.md).
 
-## Check the UX Audit Skill
+> [!NOTE]
+> Browser checks exercise contracts, states, keyboard paths, and three viewport widths. They do not establish production integration, user outcomes, or full accessibility conformance.
+
+### 🔍 UX Audit Skill
 
 ```sh
 python3 -B ux-audit-skill/scripts/validate.py
@@ -154,3 +282,9 @@ Download [ux-audit-skill.zip](ux-audit-skill.zip) for the standalone audit packa
 This is an independent project informed by Jon Yablonski’s **Laws of UX**. It is not affiliated with or endorsed by Laws of UX. Source coverage was verified on October 27, 2026.
 
 The package contains original explanations, workflows, and examples, with no copied article collection or artwork. The [MIT license](LICENSE) at the repository root, with a copy in each skill folder, covers original contributions only. Each SKILL.md declares its version; see the [changelog](CHANGELOG.md). Upstream website content has its own CC BY-NC-ND 4.0 license and is not relicensed here. See [source attribution and research scope](laws-of-ux-skill/references/source-links.md).
+
+---
+
+<p align="center">
+  <sub>🍳 Served fresh from the Cooking UX kitchen · <a href="#top">Back to top ↑</a></sub>
+</p>
