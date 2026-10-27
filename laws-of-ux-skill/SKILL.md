@@ -34,6 +34,8 @@ For limited evidence, competing principles, or unclear success criteria, use [de
 
 ## Choose the workflow
 
+For comprehensive audit reports of Figma designs, user flows, or live URLs, prefer the dedicated `ux-audit-skill` when installed. The audit workflow below remains usable independently.
+
 - New product/page: [design from scratch](workflows/design-from-scratch.md).
 - Evaluate an interface: [UI audit](workflows/ui-audit.md).
 - Improve a scoped flow/component: [improve existing UI](workflows/improve-existing-ui.md).

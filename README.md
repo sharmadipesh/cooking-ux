@@ -2,11 +2,18 @@
 
 **Help your AI build interfaces that are easier to understand and use.**
 
-Cooking UX is a reusable skill that turns 30 concepts from [Laws of UX](https://lawsofux.com/) into practical guidance for designing, reviewing, and improving real products.
+Cooking UX contains two portable skills: practical design guidance drawn from 30 [Laws of UX](https://lawsofux.com/) concepts, and a dedicated evidence-based UX Audit Skill for Figma, user flows, and live web pages.
 
-Use it with Codex, Claude Code, other compatible coding agents, or an AI assistant that can read the included files. The skill selects principles that fit your task and translates them into concrete design and code changes.
+Use them with Codex, Claude Code, other compatible coding agents, or an AI assistant that can read the included files. Choose design guidance for building/improving an interface, or the audit skill for a structured, prioritized review.
 
-## What can it help with?
+## Choose a skill
+
+| Skill | Use it for | Start here |
+|---|---|---|
+| `laws-of-ux-skill` | Design and implement better interfaces using relevant UX principles | [Guide](laws-of-ux-skill/README.md) |
+| `ux-audit-skill` | Audit Figma designs, user flows, and live pages; report evidence, severity, priority, recommendations, and checks | [Audit guide](ux-audit-skill/README.md) |
+
+## What can they help with?
 
 - Build clearer landing pages, dashboards, and application screens.
 - Improve navigation, forms, tables, empty states, and user flows.
@@ -15,7 +22,7 @@ Use it with Codex, Claude Code, other compatible coding agents, or an AI assista
 - Refactor frontend components while preserving working behavior.
 - Consider accessibility, responsive layouts, feedback, and error recovery.
 
-Every concept includes an original explanation, practical applications, implementation guidance, good and bad examples, limitations, and a source link. The package works offline once its files are available to the assistant.
+Every Laws of UX concept includes an original explanation, practical applications, implementation guidance, good and bad examples, limitations, and a source link. Both skills can review supplied material offline. Live URLs and Figma files still need suitable tools and authorized access.
 
 ## Install with one command
 
@@ -25,9 +32,15 @@ Run this in your project’s terminal:
 npx skills add https://github.com/sharmadipesh/cooking-ux
 ```
 
-Select `laws-of-ux-skill` and your coding agent when prompted. The installer adds the complete skill folder, including its references and workflows. No manual clone or file copying is needed. It requires Node.js 22.20 or later and Git. This uses the third-party [open-source Skills CLI](https://github.com/vercel-labs/skills).
+Select `laws-of-ux-skill`, `ux-audit-skill`, or both, and your coding agent when prompted. The installer adds the complete skill folder, including its references and workflows. No manual clone or file copying is needed. It requires Node.js 22.20 or later and Git. This uses the third-party [open-source Skills CLI](https://github.com/vercel-labs/skills).
 
-Want the skill available across projects? Add `-g`:
+Install only the audit skill:
+
+```sh
+npx skills add https://github.com/sharmadipesh/cooking-ux --skill ux-audit-skill
+```
+
+Want the selected skill available across projects? Add `-g`:
 
 ```sh
 npx skills add https://github.com/sharmadipesh/cooking-ux -g
@@ -49,7 +62,13 @@ After installation, start a new agent session if needed. In Codex, try:
 
 In Claude Code, use `/laws-of-ux-skill` instead. Automatic discovery depends on the product and its settings. See [the full guide](laws-of-ux-skill/README.md) for manual installation and offline usage.
 
-## Explore the package
+For an audit in Codex:
+
+> Use $ux-audit-skill to audit [Figma link, website URL, or attached flow] for [audience and task]. Cite screens/components/steps, separate observed issues from hypotheses, and prioritize practical improvements. Stop before real transactions or data changes.
+
+Use `/ux-audit-skill` in Claude Code. See the [audit report template](ux-audit-skill/templates/audit-report.md), [example artifact review](ux-audit-skill/examples/artifact-audit.md), and [tested live sandbox report](ux-audit-skill/tests/results/live/report.md).
+
+## Explore the Laws of UX package
 
 | Start here | What you will find |
 |---|---|
@@ -74,6 +93,16 @@ python3 -B laws-of-ux-skill/scripts/package.py --check
 ```
 
 The package includes seven design scenarios, two implemented sandbox interfaces, and 13 browser acceptance checks. See [optional browser setup](laws-of-ux-skill/tests/browser/README.md) and [implementation evidence](laws-of-ux-skill/tests/implementation-evaluation.md). Browser checks exercise contracts, states, keyboard paths, and three viewport widths. They do not establish production integration, user outcomes, or full accessibility conformance.
+
+## Check the UX Audit Skill
+
+```sh
+python3 -B ux-audit-skill/scripts/validate.py
+python3 -B -m unittest discover -s ux-audit-skill/tests -p 'test_*.py' -v
+python3 -B ux-audit-skill/scripts/package.py --check
+```
+
+Download [ux-audit-skill.zip](ux-audit-skill.zip) for the standalone audit package. The skill includes acquisition guidance, a full audit coverage checklist, a severity/priority/confidence rubric, report template, examples, and independent evaluation artifacts. [Validation notes](ux-audit-skill/tests/validation-report.md) disclose which checks actually ran.
 
 ## Sources and license
 

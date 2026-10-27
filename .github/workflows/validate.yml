@@ -30,6 +30,13 @@ jobs:
       - name: Verify downloadable ZIP matches source
         run: python -B laws-of-ux-skill/scripts/package.py --check
 
+      - name: Validate dedicated audit skill
+        run: python -B ux-audit-skill/scripts/validate.py
+      - name: Run audit report and package regressions
+        run: python -B -m unittest discover -s ux-audit-skill/tests -p "test_*.py" -v
+      - name: Verify standalone audit archive
+        run: python -B ux-audit-skill/scripts/package.py --check
+
   browser:
     name: Sandbox browser acceptance
     runs-on: ubuntu-latest

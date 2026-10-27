@@ -1,0 +1,109 @@
+{
+  "scope": {
+    "source_type": "design artifact",
+    "task": "Read required terms during account access",
+    "audience": "First-time coordinators",
+    "inspected": [
+      "Supplied D03 color/type values only"
+    ],
+    "not_assessed": [
+      "Live Figma",
+      "Runtime behavior",
+      "Assistive technology"
+    ],
+    "limitations": [
+      "Illustrative single-finding excerpt, not a comprehensive audit"
+    ]
+  },
+  "evidence": [
+    {
+      "id": "D03",
+      "locator": "Supplied node 10:8, Terms explanation",
+      "basis": "Supplied",
+      "state": "14px normal opaque text, #9A9A9A on #FFFFFF",
+      "note": "Supports contrast calculation from supplied values, not a live measurement"
+    }
+  ],
+  "coverage": [
+    {
+      "dimension": "Usability and task clarity",
+      "status": "Not assessed",
+      "reason": "Supplied text-style values only; excerpt scope"
+    },
+    {
+      "dimension": "Accessibility",
+      "status": "Partial",
+      "reason": "Supplied text-style values only; excerpt scope"
+    },
+    {
+      "dimension": "Visual hierarchy and readability",
+      "status": "Partial",
+      "reason": "Supplied text-style values only; excerpt scope"
+    },
+    {
+      "dimension": "Consistency",
+      "status": "Not assessed",
+      "reason": "Supplied text-style values only; excerpt scope"
+    },
+    {
+      "dimension": "Navigation and information architecture",
+      "status": "Not assessed",
+      "reason": "Supplied text-style values only; excerpt scope"
+    },
+    {
+      "dimension": "Journey and flow",
+      "status": "Not assessed",
+      "reason": "Supplied text-style values only; excerpt scope"
+    },
+    {
+      "dimension": "Interaction and system feedback",
+      "status": "Not assessed",
+      "reason": "Supplied text-style values only; excerpt scope"
+    },
+    {
+      "dimension": "Responsive and content resilience",
+      "status": "Not assessed",
+      "reason": "Supplied text-style values only; excerpt scope"
+    },
+    {
+      "dimension": "Friction and cognitive load",
+      "status": "Not assessed",
+      "reason": "Supplied text-style values only; excerpt scope"
+    },
+    {
+      "dimension": "Error prevention and recovery",
+      "status": "Not assessed",
+      "reason": "Supplied text-style values only; excerpt scope"
+    },
+    {
+      "dimension": "Trust and user control",
+      "status": "Not assessed",
+      "reason": "Supplied text-style values only; excerpt scope"
+    }
+  ],
+  "findings": [
+    {
+      "id": "UX-01",
+      "title": "Essential instructions have low design contrast",
+      "location": "Supplied node 10:8",
+      "evidence_ids": [
+        "D03"
+      ],
+      "observation": "Supplied colors calculate to approximately 2.81:1 by relative luminance",
+      "impact": "Required instructions may be difficult to read for users with low vision; predicted impact",
+      "kind": "design risk",
+      "severity": "Major",
+      "severity_reason": "Essential information may be inaccessible; implementation is unknown",
+      "priority": "P1",
+      "priority_reason": "Correct a well-supported design issue in the next cycle",
+      "confidence": "High",
+      "confidence_reason": "Exact supplied opaque colors support the calculation; user effect remains predicted",
+      "recommendation": "Darken normal instructional text to meet the applicable contrast requirement",
+      "suggested_pattern": "Readable text hierarchy using accessible foreground tokens",
+      "acceptance_check": "Recalculate final text/background at >=4.5:1, then verify rendered states",
+      "assumptions": [
+        "Supplied colors, size, opacity, and essential status are accurate"
+      ]
+    }
+  ]
+}

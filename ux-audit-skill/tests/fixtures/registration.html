@@ -1,0 +1,20 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Teamline access request — audit sandbox</title>
+<style>
+body { font: 16px/1.5 system-ui,sans-serif; margin: 0; color: #172330; background: #f3f5f8; }
+main { width: 860px; margin: 32px auto; padding: 32px; background: white; }
+input,button { font: inherit; display: block; padding: 12px; margin: 16px 0; }
+button { color: white; background: #1248aa; border: 0; }
+</style></head><body><main><h1>Request your Teamline account</h1><p>Use this sandbox to review the access-request journey. No account will be created.</p>
+<form action="/api/request-access" method="post"><input name="email" type="email" placeholder="Email address" required><input name="password" type="password" placeholder="Password" required minlength="8"><button type="submit">Request access</button><p id="status"></p></form></main>
+<script>
+const form=document.querySelector('form');
+form.addEventListener('submit',async event=>{
+ event.preventDefault();
+ try {
+  const response=await fetch('/api/request-access',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.fromEntries(new FormData(form)))});
+  const data=await response.json();
+  document.querySelector('#status').textContent=data.message;
+  if(!response.ok) form.reset();
+ } catch {document.querySelector('#status').textContent='Try again';}
+});
+</script></body></html>

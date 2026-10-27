@@ -1,0 +1,444 @@
+{
+  "date": "2026-10-27T10:39:06.989Z",
+  "url": "http://127.0.0.1:53413/registration.html",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "initial": [
+    {
+      "tag": "INPUT",
+      "type": "email",
+      "name": "email",
+      "placeholder": "Email address",
+      "labels": [],
+      "ariaLabel": null,
+      "required": true,
+      "minLength": -1,
+      "autocomplete": "",
+      "rect": {
+        "x": 290,
+        "y": 194.875,
+        "width": 203,
+        "height": 52,
+        "top": 194.875,
+        "right": 493,
+        "bottom": 246.875,
+        "left": 290
+      }
+    },
+    {
+      "tag": "INPUT",
+      "type": "password",
+      "name": "password",
+      "placeholder": "Password",
+      "labels": [],
+      "ariaLabel": null,
+      "required": true,
+      "minLength": 8,
+      "autocomplete": "",
+      "rect": {
+        "x": 290,
+        "y": 262.875,
+        "width": 203,
+        "height": 52,
+        "top": 262.875,
+        "right": 493,
+        "bottom": 314.875,
+        "left": 290
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "name": "",
+      "placeholder": null,
+      "labels": [],
+      "ariaLabel": null,
+      "rect": {
+        "x": 290,
+        "y": 330.875,
+        "width": 138.296875,
+        "height": 48,
+        "top": 330.875,
+        "right": 428.296875,
+        "bottom": 378.875,
+        "left": 290
+      }
+    }
+  ],
+  "focusEmail": {
+    "tag": "INPUT",
+    "name": "email",
+    "outline": "rgb(0, 95, 204) auto 1px"
+  },
+  "focusSubmit": {
+    "tag": "BUTTON",
+    "text": "Request access",
+    "outline": "rgb(0, 95, 204) auto 1px"
+  },
+  "emptySubmit": [
+    {
+      "name": "email",
+      "valid": false,
+      "message": "Please fill out this field.",
+      "focused": true
+    },
+    {
+      "name": "password",
+      "valid": false,
+      "message": "Please fill out this field.",
+      "focused": false
+    }
+  ],
+  "shortPassword": {
+    "valid": false,
+    "message": "Please lengthen this text to 8 characters or more (you are currently using 5 characters)."
+  },
+  "rejection": {
+    "status": 422,
+    "body": {
+      "message": "Use a different email address."
+    },
+    "url": "http://127.0.0.1:53413/registration.html",
+    "inputs": [
+      {
+        "name": "email",
+        "valueLength": 0,
+        "placeholder": "Email address"
+      },
+      {
+        "name": "password",
+        "valueLength": 0,
+        "placeholder": "Password"
+      }
+    ],
+    "focus": {
+      "tag": "BUTTON",
+      "text": "Request access"
+    },
+    "statusAttrs": {
+      "text": "Use a different email address.",
+      "role": null,
+      "live": null,
+      "describedBy": [
+        null,
+        null
+      ]
+    }
+  },
+  "afterRejectionTab": {
+    "tag": "BODY",
+    "name": null
+  },
+  "responsive": [
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "metrics": {
+        "innerWidth": 768,
+        "scrollWidth": 924,
+        "scrollHeight": 1024,
+        "mainRect": {
+          "x": 0,
+          "y": 32,
+          "width": 924,
+          "height": 394.875,
+          "top": 32,
+          "right": 924,
+          "bottom": 426.875,
+          "left": 0
+        },
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "rect": {
+              "x": 32,
+              "y": 194.875,
+              "width": 203,
+              "height": 52,
+              "top": 194.875,
+              "right": 235,
+              "bottom": 246.875,
+              "left": 32
+            }
+          },
+          {
+            "tag": "INPUT",
+            "rect": {
+              "x": 32,
+              "y": 262.875,
+              "width": 203,
+              "height": 52,
+              "top": 262.875,
+              "right": 235,
+              "bottom": 314.875,
+              "left": 32
+            }
+          },
+          {
+            "tag": "BUTTON",
+            "rect": {
+              "x": 32,
+              "y": 330.875,
+              "width": 138.296875,
+              "height": 48,
+              "top": 330.875,
+              "right": 170.296875,
+              "bottom": 378.875,
+              "left": 32
+            }
+          }
+        ]
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "metrics": {
+        "innerWidth": 390,
+        "scrollWidth": 924,
+        "scrollHeight": 844,
+        "mainRect": {
+          "x": 0,
+          "y": 32,
+          "width": 924,
+          "height": 394.875,
+          "top": 32,
+          "right": 924,
+          "bottom": 426.875,
+          "left": 0
+        },
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "rect": {
+              "x": 32,
+              "y": 194.875,
+              "width": 203,
+              "height": 52,
+              "top": 194.875,
+              "right": 235,
+              "bottom": 246.875,
+              "left": 32
+            }
+          },
+          {
+            "tag": "INPUT",
+            "rect": {
+              "x": 32,
+              "y": 262.875,
+              "width": 203,
+              "height": 52,
+              "top": 262.875,
+              "right": 235,
+              "bottom": 314.875,
+              "left": 32
+            }
+          },
+          {
+            "tag": "BUTTON",
+            "rect": {
+              "x": 32,
+              "y": 330.875,
+              "width": 138.296875,
+              "height": 48,
+              "top": 330.875,
+              "right": 170.296875,
+              "bottom": 378.875,
+              "left": 32
+            }
+          }
+        ]
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 800
+      },
+      "metrics": {
+        "innerWidth": 320,
+        "scrollWidth": 924,
+        "scrollHeight": 800,
+        "mainRect": {
+          "x": 0,
+          "y": 32,
+          "width": 924,
+          "height": 394.875,
+          "top": 32,
+          "right": 924,
+          "bottom": 426.875,
+          "left": 0
+        },
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "rect": {
+              "x": 32,
+              "y": 194.875,
+              "width": 203,
+              "height": 52,
+              "top": 194.875,
+              "right": 235,
+              "bottom": 246.875,
+              "left": 32
+            }
+          },
+          {
+            "tag": "INPUT",
+            "rect": {
+              "x": 32,
+              "y": 262.875,
+              "width": 203,
+              "height": 52,
+              "top": 262.875,
+              "right": 235,
+              "bottom": 314.875,
+              "left": 32
+            }
+          },
+          {
+            "tag": "BUTTON",
+            "rect": {
+              "x": 32,
+              "y": 330.875,
+              "width": 138.296875,
+              "height": 48,
+              "top": 330.875,
+              "right": 170.296875,
+              "bottom": 378.875,
+              "left": 32
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "mobileRejection": {
+    "text": "Request your Teamline account\n\nUse this sandbox to review the access-request journey. No account will be created.\n\nRequest access\n\nUse a different email address.",
+    "inputLengths": [
+      0,
+      0
+    ]
+  },
+  "keyboardRejection": {
+    "focused": {
+      "tag": "BUTTON",
+      "text": "Request access"
+    },
+    "status": "Use a different email address."
+  },
+  "recoveryFirstReverseTab": {
+    "tag": "INPUT",
+    "name": "password"
+  },
+  "keyboardRetry": {
+    "status": 422,
+    "message": "Use a different email address.",
+    "values": [
+      {
+        "name": "email",
+        "length": 0
+      },
+      {
+        "name": "password",
+        "length": 0
+      }
+    ]
+  },
+  "styles": [
+    {
+      "tag": "H1",
+      "text": "Request your Teamline account",
+      "foreground": "rgb(23, 35, 48)",
+      "background": "rgba(0, 0, 0, 0)",
+      "fontSize": "32px",
+      "fontWeight": "700"
+    },
+    {
+      "tag": "P",
+      "text": "Use this sandbox to review the access-request journey. No account will be created.",
+      "foreground": "rgb(23, 35, 48)",
+      "background": "rgba(0, 0, 0, 0)",
+      "fontSize": "16px",
+      "fontWeight": "400"
+    },
+    {
+      "tag": "INPUT",
+      "text": "Email address",
+      "foreground": "rgb(0, 0, 0)",
+      "background": "rgb(255, 255, 255)",
+      "fontSize": "16px",
+      "fontWeight": "400"
+    },
+    {
+      "tag": "INPUT",
+      "text": "Password",
+      "foreground": "rgb(0, 0, 0)",
+      "background": "rgb(255, 255, 255)",
+      "fontSize": "16px",
+      "fontWeight": "400"
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Request access",
+      "foreground": "rgb(255, 255, 255)",
+      "background": "rgb(18, 72, 170)",
+      "fontSize": "16px",
+      "fontWeight": "400"
+    },
+    {
+      "tag": "P",
+      "text": "Use a different email address.",
+      "foreground": "rgb(23, 35, 48)",
+      "background": "rgba(0, 0, 0, 0)",
+      "fontSize": "16px",
+      "fontWeight": "400"
+    }
+  ],
+  "editAfterError": {
+    "status": "Use a different email address.",
+    "emailLength": 28
+  },
+  "currentDOM": {
+    "inputs": [
+      {
+        "name": "email",
+        "id": "",
+        "placeholder": "Email address",
+        "labelCount": 0,
+        "ariaLabel": null,
+        "ariaLabelledBy": null,
+        "ariaInvalid": null,
+        "ariaDescribedBy": null,
+        "type": "email",
+        "required": true,
+        "minLength": -1
+      },
+      {
+        "name": "password",
+        "id": "",
+        "placeholder": "Password",
+        "labelCount": 0,
+        "ariaLabel": null,
+        "ariaLabelledBy": null,
+        "ariaInvalid": null,
+        "ariaDescribedBy": null,
+        "type": "password",
+        "required": true,
+        "minLength": 8
+      }
+    ],
+    "status": {
+      "tag": "P",
+      "role": null,
+      "ariaLive": null
+    },
+    "links": []
+  }
+}
