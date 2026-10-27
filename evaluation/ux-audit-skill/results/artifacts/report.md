@@ -4,7 +4,7 @@ The clearest supported changes are to make essential terms readable, add persist
 
 ## Scope and evidence
 
-Reviewed offline on 27 October 2026 for first-time small-team coordinators choosing a plan and requesting account access. The sources are original synthetic test artifacts: [design-observations.md](../../fixtures/design-observations.md) and [flow.md](../../fixtures/flow.md). Their snapshot dates/versions are unspecified. No screenshots, live Figma file, prototype, browser, implementation, analytics, or user research were inspected. Findings concern supplied descriptions; user impacts are predictions.
+Reviewed offline on 27 October 2026 for first-time small-team coordinators choosing a plan and requesting account access. The sources are original synthetic test artifacts: [design-observations.md](../../../../ux-audit-skill/tests/fixtures/design-observations.md) and [flow.md](../../../../ux-audit-skill/tests/fixtures/flow.md). Their snapshot dates/versions are unspecified. No screenshots, live Figma file, prototype, browser, implementation, analytics, or user research were inspected. Findings concern supplied descriptions; user impacts are predictions.
 
 | Evidence | Supplied locator and state | Method / support and limits |
 |---|---|---|

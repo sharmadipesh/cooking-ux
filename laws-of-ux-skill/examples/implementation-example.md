@@ -53,7 +53,7 @@ button { min-block-size: 2.75rem; padding-inline: 1rem; }
 
 The button size is an illustrative comfort choice, not a dimension mandated by Fitts. Check rendered contrast, zoom, long error text, and existing focus styles.
 
-For a runnable sandbox implementation and independent browser checks, see [the implementation evaluation](../tests/implementation-evaluation.md). It uses intercepted API responses and is not a production registration service.
+For a runnable sandbox implementation and independent browser checks, see [the implementation evaluation](https://github.com/sharmadipesh/cooking-ux/blob/main/evaluation/laws-of-ux-skill/implementation-evaluation.md) in the repository’s evaluation folder. It uses intercepted API responses and is not a production registration service.
 
 ## Acceptance cases
 
