@@ -17,32 +17,37 @@ Use it with Codex, Claude Code, other compatible coding agents, or an AI assista
 
 Every concept includes an original explanation, practical applications, implementation guidance, good and bad examples, limitations, and a source link. The package works offline once its files are available to the assistant.
 
-## Get started
+## Install with one command
+
+Run this in your project’s terminal:
 
 ```sh
-git clone https://github.com/sharmadipesh/cooking-ux.git
-cd cooking-ux
+npx skills add https://github.com/sharmadipesh/cooking-ux
 ```
 
-Copy the complete `laws-of-ux-skill` folder to your agent’s skill directory. Choose the location for your tool, and check for an existing installation before copying:
+Select `laws-of-ux-skill` and your coding agent when prompted. The installer adds the complete skill folder, including its references and workflows. No manual clone or file copying is needed. It requires Node.js 22.20 or later and Git. This uses the third-party [open-source Skills CLI](https://github.com/vercel-labs/skills).
 
-| Tool | Personal skill directory | Invoke with |
-|---|---|---|
-| Codex | `~/.agents/skills/laws-of-ux-skill/` | `$laws-of-ux-skill` |
-| Claude Code, local sessions | `~/.claude/skills/laws-of-ux-skill/` | `/laws-of-ux-skill` |
-
-For example, to install in Codex when the destination does not already exist:
+Want the skill available across projects? Add `-g`:
 
 ```sh
-mkdir -p ~/.agents/skills
-cp -R laws-of-ux-skill ~/.agents/skills/laws-of-ux-skill
+npx skills add https://github.com/sharmadipesh/cooking-ux -g
 ```
 
-Start a new agent session if needed, then try:
+## Prefer to paste a link into your AI agent?
+
+Copy this message into an agent that supports repository access and skill installation:
+
+> Install the UX skill from https://github.com/sharmadipesh/cooking-ux into this project for my coding agent. Install the complete laws-of-ux-skill folder, including its references and workflows. Preserve any existing installation and report the installation path.
+
+A repository link alone cannot automatically install files in every AI product. Your agent needs installation tools and access to your project. For chat assistants without installation support, attach [the ZIP](laws-of-ux-skill.zip) and ask them to read SKILL.md and the relevant files.
+
+## Use it
+
+After installation, start a new agent session if needed. In Codex, try:
 
 > Use $laws-of-ux-skill to improve this dashboard. Reuse the existing design system, preserve its functionality, and make the most important information and actions easier to find. Implement the changes and report what you verified.
 
-For Claude Code, use `/laws-of-ux-skill` instead. For a general AI assistant, attach the folder or ZIP and ask it to read `SKILL.md` and the relevant references. Automatic discovery depends on the product and its settings.
+In Claude Code, use `/laws-of-ux-skill` instead. Automatic discovery depends on the product and its settings. See [the full guide](laws-of-ux-skill/README.md) for manual installation and offline usage.
 
 ## Explore the package
 

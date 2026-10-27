@@ -4,6 +4,22 @@ A portable, Markdown-first skill for designers, developers, and AI assistants bu
 
 Start with [SKILL.md](SKILL.md). It routes to four workflows, the verified 30-concept inventory, focused references, realistic examples, and seven behavioral test scenarios. No API, model, JavaScript framework, network connection, or paid source is required for ordinary use. Python 3 is optional for package validation.
 
+## Quick install from GitHub
+
+From your project terminal:
+
+```sh
+npx skills add https://github.com/sharmadipesh/cooking-ux
+```
+
+Choose `laws-of-ux-skill` and the target agent. The complete package is installed together. Add `-g` to install for your user across projects. Requires Node.js 22.20 or later and Git; installation needs internet access. This optional installer is the third-party [Skills CLI](https://github.com/vercel-labs/skills), not a built-in command shared by every agent. Manual installation below does not require Node.js.
+
+Or paste this into an agent with repository access and installation tools:
+
+> Install the UX skill from https://github.com/sharmadipesh/cooking-ux into this project for my coding agent. Install the complete laws-of-ux-skill folder with its references and workflows. Preserve any existing installation and report the installation path.
+
+A link alone does not give a general chat assistant file-system access or automatic skill installation.
+
 ## Install in a local coding agent
 
 Copy the **whole directory**, retaining its name and references. Do not copy only SKILL.md. Check that a destination does not already exist before copying; merge intentionally rather than overwrite an existing installation.
