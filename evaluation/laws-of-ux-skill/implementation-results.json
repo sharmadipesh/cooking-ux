@@ -9,7 +9,7 @@
   "baseline_skill_commit": "4a4cb89",
   "method": "Fresh isolated agent per task and skill version, same seed/task, no access to oracle or other candidates; one attempt each. Independent review corrected final503 handling and strengthened the success oracle. Raw upgraded registration candidate retained. All API responses mocked.",
   "seed": {
-    "fixtureDir": "tests/fixtures/seed",
+    "fixtureDir": "fixtures/seed",
     "negativeSuccessControl": false,
     "scope": "Sandbox browser behavior; not production integration, user testing, or full accessibility conformance",
     "cases": [
@@ -81,7 +81,7 @@
     "failed": 11
   },
   "baseline": {
-    "fixtureDir": "tests/fixtures/baseline",
+    "fixtureDir": "fixtures/baseline",
     "negativeSuccessControl": false,
     "scope": "Sandbox browser behavior; not production integration, user testing, or full accessibility conformance",
     "cases": [
@@ -144,7 +144,7 @@
     "failed": 2
   },
   "upgraded_candidate_registration": {
-    "fixtureDir": "tests/fixtures/candidate/registration.html",
+    "fixtureDir": "fixtures/candidate/registration.html",
     "negativeSuccessControl": false,
     "scope": "Sandbox browser behavior; not production integration, user testing, or full accessibility conformance",
     "cases": [
@@ -178,7 +178,7 @@
     "failed": 1
   },
   "final": {
-    "fixtureDir": "tests/fixtures/completed",
+    "fixtureDir": "fixtures/completed",
     "negativeSuccessControl": false,
     "scope": "Sandbox browser behavior; not production integration, user testing, or full accessibility conformance",
     "cases": [
@@ -243,13 +243,13 @@
     "method": "Substituted unconfirmed200 during retry; exactly the confirmed-success case failed, as required."
   },
   "artifact_sha256": {
-    "tests/fixtures/baseline/records.html": "68bee922348136b28bf39eb11e194c3dd727d347a18278132d41954f530859e9",
-    "tests/fixtures/baseline/registration.html": "67e882cbc827c5a2bd23801f0674060d3dea93a937def3ab6b48c1e992db7cae",
-    "tests/fixtures/candidate/registration.html": "95cb39e5b17a55265158d50794a0bbfd91421817f2cd3b5ac066965599998c7a",
-    "tests/fixtures/completed/records.html": "9454e3dc0adc9a813abc4c878cdfd13f93c62c0931a8e42740d70a7b22c18fe2",
-    "tests/fixtures/completed/registration.html": "cb981db5db0a1075c56ae323538f660276bfafc09419824399fa178aa547550f",
-    "tests/fixtures/seed/records.html": "de0960eda0f70c73e5a64dcaa2c7311d690903bace3e5162f8329116fb945f07",
-    "tests/fixtures/seed/registration.html": "352c7558a8e4dba1bdbd37101b337130d920794be687282ce378c5b0608f6fb8"
+    "fixtures/baseline/records.html": "68bee922348136b28bf39eb11e194c3dd727d347a18278132d41954f530859e9",
+    "fixtures/baseline/registration.html": "67e882cbc827c5a2bd23801f0674060d3dea93a937def3ab6b48c1e992db7cae",
+    "fixtures/candidate/registration.html": "95cb39e5b17a55265158d50794a0bbfd91421817f2cd3b5ac066965599998c7a",
+    "fixtures/completed/records.html": "9454e3dc0adc9a813abc4c878cdfd13f93c62c0931a8e42740d70a7b22c18fe2",
+    "fixtures/completed/registration.html": "cb981db5db0a1075c56ae323538f660276bfafc09419824399fa178aa547550f",
+    "fixtures/seed/records.html": "de0960eda0f70c73e5a64dcaa2c7311d690903bace3e5162f8329116fb945f07",
+    "fixtures/seed/registration.html": "352c7558a8e4dba1bdbd37101b337130d920794be687282ce378c5b0608f6fb8"
   },
   "runner_sha256": "810eb5877d1224184b3accf893303c1b373563888d365ac75dc41e98c8b25cc4",
   "limits": [

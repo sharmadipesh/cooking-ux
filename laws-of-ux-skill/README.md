@@ -2,7 +2,7 @@
 
 A portable, Markdown-first skill for designers, developers, and AI assistants building or evaluating real interfaces. It turns selected UX concepts into concrete decisions, implementation guidance, and validation conditions using **Understand → Analyze → Select principles → Apply → Validate → Explain**.
 
-Start with [SKILL.md](SKILL.md). It routes to four workflows, the verified 30-concept inventory, focused references, a component playbook, realistic examples, seven behavioral scenarios, and two runnable sandbox implementations. No API, model, JavaScript framework, network connection, or paid source is required for ordinary use. Python 3.9+ is optional for package validation.
+Start with [SKILL.md](SKILL.md). It routes to four workflows, the verified 30-concept inventory, focused references, a component playbook, realistic examples, and seven behavioral scenarios. The repository’s [evaluation folder](https://github.com/sharmadipesh/cooking-ux/tree/main/evaluation/laws-of-ux-skill) keeps the two runnable sandbox implementations and their browser evidence outside the installed package. No API, model, JavaScript framework, network connection, or paid source is required for ordinary use. Python 3.9+ is optional for package validation.
 
 ## Quick install from GitHub
 
@@ -80,7 +80,7 @@ python3 scripts/validate.py
 python3 -B -m unittest discover -s tests -p 'test_*.py' -v
 ```
 
-Optionally check current remote URLs with `python3 scripts/validate.py --online`. Network failures fail that check and are reported; HTTP success is not semantic verification. Run the scenarios in tests/test-prompts.md against the target agent and evaluate with tests/expected-behaviors.md. For executable form and records tasks, see [optional browser checks](tests/browser/README.md) and [implementation evaluation](tests/implementation-evaluation.md). The optional browser tests use pinned development dependencies, while ordinary skill use and Python checks remain independent of Node packages. Structural checks do not establish agent behavior. See tests/validation-report.md for the checks actually performed on this release.
+Optionally check current remote URLs with `python3 scripts/validate.py --online`. Network failures fail that check and are reported; HTTP success is not semantic verification. Run the scenarios in tests/test-prompts.md against the target agent and evaluate with tests/expected-behaviors.md. For executable form and records tasks, see the repository’s [optional browser checks](https://github.com/sharmadipesh/cooking-ux/blob/main/evaluation/laws-of-ux-skill/browser/README.md) and [implementation evaluation](https://github.com/sharmadipesh/cooking-ux/blob/main/evaluation/laws-of-ux-skill/implementation-evaluation.md); they live in `evaluation/laws-of-ux-skill/`, not in this package. The optional browser tests use pinned development dependencies, while ordinary skill use and Python checks remain independent of Node packages. Structural checks do not establish agent behavior. See tests/validation-report.md for the checks actually performed on this release.
 
 To rebuild a shareable archive, run this from the parent directory after validating:
 

@@ -57,7 +57,7 @@ Cross-scenario gates: selective loading; actionable decisions; accurate names/so
 
 ## Executable implementation subset
 
-The [browser checks](browser/README.md) exercise registration (T3) and records/empty states (T5), including some contract-preservation behavior relevant to T6. See the [recorded evaluation](implementation-evaluation.md). This does not turn the other proposal scenarios into completed implementation tests. Use fresh seed copies and do not provide the completed artifacts or test answers to a candidate agent.
+The repository’s [browser checks](https://github.com/sharmadipesh/cooking-ux/blob/main/evaluation/laws-of-ux-skill/browser/README.md) exercise registration (T3) and records/empty states (T5), including some contract-preservation behavior relevant to T6. See the [recorded evaluation](https://github.com/sharmadipesh/cooking-ux/blob/main/evaluation/laws-of-ux-skill/implementation-evaluation.md); both live in `evaluation/laws-of-ux-skill/`, outside this package. This does not turn the other proposal scenarios into completed implementation tests. Use fresh seed copies and do not provide the completed artifacts or test answers to a candidate agent.
 
 For unknown mutation outcomes, require uncertainty plus existing reconciliation or an informed retry warning; do not accept a confident failure claim or an invented verification endpoint. For async reads, test late success, error, and permission changes against the active scope as relevant. Inspect actual rendered messages and code when an English-pattern assertion might reject a legitimate alternative.
 

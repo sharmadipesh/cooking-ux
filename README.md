@@ -88,13 +88,13 @@ For an audit in Codex:
 
 > Use $ux-audit-skill to audit [Figma link, website URL, or attached flow] for [audience and task]. Cite screens/components/steps, separate observed issues from hypotheses, and prioritize practical improvements. Stop before real transactions or data changes.
 
-Use `/ux-audit-skill` in Claude Code. See the [audit report template](ux-audit-skill/templates/audit-report.md), [example artifact review](ux-audit-skill/examples/artifact-audit.md), and [tested live sandbox report](ux-audit-skill/tests/results/live/report.md).
+Use `/ux-audit-skill` in Claude Code. See the [audit report template](ux-audit-skill/templates/audit-report.md), [example artifact review](ux-audit-skill/examples/artifact-audit.md), and [tested live sandbox report](evaluation/ux-audit-skill/results/live/report.md).
 
 ## 🥣 A taste of the output
 
 **The problem:** a form rejects your email, then clears everything you typed. The interface has apparently chosen amnesia.
 
-Here’s how an audit turns that frustration into work someone can actually pick up. This abbreviated example comes from the [tested local sandbox report](ux-audit-skill/tests/results/live/report.md), not a production site.
+Here’s how an audit turns that frustration into work someone can actually pick up. This abbreviated example comes from the [tested local sandbox report](evaluation/ux-audit-skill/results/live/report.md), not a production site.
 
 | A useful finding needs… | Example |
 |---|---|
@@ -123,6 +123,7 @@ A useful recommendation has a location, a reason, and a way to check it. “Make
 | [Workflows](laws-of-ux-skill/workflows/) | Design, audit, improvement, and implementation |
 | [Examples](laws-of-ux-skill/examples/) | Practical decisions, an audit, and implementation guidance |
 | [Validation report](laws-of-ux-skill/tests/validation-report.md) | Checks performed and their limitations |
+| [Evaluation evidence](evaluation/README.md) | Sandbox fixtures, browser runner, audited reports, and screenshots, kept outside the installed packages |
 | [Downloadable ZIP](laws-of-ux-skill.zip) | The complete portable skill package |
 | [Changelog](CHANGELOG.md) | Skill versions and what changed |
 
@@ -136,7 +137,7 @@ python3 -B -m unittest discover -s laws-of-ux-skill/tests -p 'test_*.py' -v
 python3 -B laws-of-ux-skill/scripts/package.py --check
 ```
 
-The package includes seven design scenarios, two implemented sandbox interfaces, and 13 browser acceptance checks. See [optional browser setup](laws-of-ux-skill/tests/browser/README.md) and [implementation evidence](laws-of-ux-skill/tests/implementation-evaluation.md). Browser checks exercise contracts, states, keyboard paths, and three viewport widths. They do not establish production integration, user outcomes, or full accessibility conformance.
+The package includes seven design scenarios. The repository’s [evaluation folder](evaluation/README.md) holds two implemented sandbox interfaces and 13 browser acceptance checks; see [optional browser setup](evaluation/laws-of-ux-skill/browser/README.md) and [implementation evidence](evaluation/laws-of-ux-skill/implementation-evaluation.md). Browser checks exercise contracts, states, keyboard paths, and three viewport widths. They do not establish production integration, user outcomes, or full accessibility conformance.
 
 ## Check the UX Audit Skill
 
@@ -146,7 +147,7 @@ python3 -B -m unittest discover -s ux-audit-skill/tests -p 'test_*.py' -v
 python3 -B ux-audit-skill/scripts/package.py --check
 ```
 
-Download [ux-audit-skill.zip](ux-audit-skill.zip) for the standalone audit package. The skill includes acquisition guidance, a full audit coverage checklist, a severity/priority/confidence rubric, report template, examples, and independent evaluation artifacts. [Validation notes](ux-audit-skill/tests/validation-report.md) disclose which checks actually ran.
+Download [ux-audit-skill.zip](ux-audit-skill.zip) for the standalone audit package. The skill includes acquisition guidance, a full audit coverage checklist, a severity/priority/confidence rubric, report template, and examples; the independent evaluation artifacts live in [evaluation/ux-audit-skill](evaluation/ux-audit-skill/). [Validation notes](ux-audit-skill/tests/validation-report.md) disclose which checks actually ran.
 
 ## 🤝 Credit where it’s due
 

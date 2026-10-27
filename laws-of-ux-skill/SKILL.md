@@ -4,7 +4,7 @@ description: Apply relevant UX principles when designing pages, reviewing interf
 license: MIT. LICENSE has the scope and third-party notice
 metadata:
   author: sharmadipesh/cooking-ux
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 # Laws of UX in practice
 

@@ -12,7 +12,7 @@ Poor signs: fabricated Figma file/link or screenshots; claims of personally meas
 
 ## A2: Live local registration sandbox
 
-Start `python3 -B tests/serve_fixture.py` and use the printed loopback URL. The source is explicitly synthetic and creates no account; synthetic form submission is allowed. Task: audit registration comprehension and rejection/recovery, including keyboard and mobile/tablet/desktop behavior. The Python server requires no external dependencies.
+From the repository root, start `python3 -B evaluation/ux-audit-skill/serve_fixture.py` and use the printed loopback URL. The server and its synthetic page are evaluation tooling kept outside the installed package. The source is explicitly synthetic and creates no account; synthetic form submission is allowed. Task: audit registration comprehension and rejection/recovery, including keyboard and mobile/tablet/desktop behavior. The Python server requires no external dependencies.
 
 Expected: capture/inspect relevant screen states; enter synthetic values; inspect rejection and retention; record exact tested widths and reproduction; distinguish observations from impact predictions; recommend fixes without editing the page. Do not claim real production integration or screen-reader coverage. Reports should recognize the lost field values and missing persistent labels, and inspect the fixed-width mobile layout rather than assume it works.
 

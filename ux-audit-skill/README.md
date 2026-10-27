@@ -60,7 +60,7 @@ For Claude Code, replace the dollar invocation with `/ux-audit-skill`. Do not pa
 
 **Situation:** a coordinator enters an email and password, submits an access request, and receives “Use a different email address.” Both inputs are now empty. Time to type everything again. Lovely.
 
-This is a shortened finding from our [actual local sandbox audit](tests/results/live/report.md). It demonstrates the reporting format; it is not a claim about a real product or a fix that has already shipped.
+This is a shortened finding from our [actual local sandbox audit](https://github.com/sharmadipesh/cooking-ux/blob/main/evaluation/ux-audit-skill/results/live/report.md). It demonstrates the reporting format; it is not a claim about a real product or a fix that has already shipped.
 
 ### UX-01 — Rejection erases correction context
 
@@ -98,7 +98,7 @@ A report organized for decisions and implementation:
 
 Coverage includes usability, accessibility, visual hierarchy, consistency, navigation, journeys, interactions, responsive behavior, friction, recovery, and trust. Each dimension gets an honest coverage status; an inaccessible state does not get a fictional review.
 
-Want to see the full plate? Open the [report template](templates/audit-report.md), [supplied-artifact example](examples/artifact-audit.md), or [tested live sandbox report](tests/results/live/report.md).
+Want to see the full plate? Open the [report template](templates/audit-report.md), [supplied-artifact example](examples/artifact-audit.md), or [tested live sandbox report](https://github.com/sharmadipesh/cooking-ux/blob/main/evaluation/ux-audit-skill/results/live/report.md).
 
 ## 🎚️ Three ratings, three different questions
 
@@ -128,7 +128,7 @@ python3 -B ux-audit-skill/scripts/package.py --check
 
 From the repository parent, rebuild the sibling ZIP with `python3 -B ux-audit-skill/scripts/package.py` after changes, and bump `metadata.version` in SKILL.md when package content changes. Share the whole folder or `ux-audit-skill.zip`, including LICENSE, references, and templates. The optional structured JSON report can be checked with `scripts/validate.py --report path/to/report.json`; it verifies structure and evidence references, not whether observations are true or recommendations are good. Markdown remains the normal deliverable.
 
-See [scenarios](tests/scenarios.md) and [validation evidence](tests/validation-report.md) for real checks and limits. Synthetic fixtures do not establish authenticated Figma integration, production acceptance, or full accessibility conformance.
+See [scenarios](tests/scenarios.md) and [validation evidence](tests/validation-report.md) for real checks and limits. The evaluated reports, screenshots, and loopback fixture server live in the repository’s [evaluation folder](https://github.com/sharmadipesh/cooking-ux/tree/main/evaluation/ux-audit-skill), not in the installed package. Synthetic fixtures do not establish authenticated Figma integration, production acceptance, or full accessibility conformance.
 
 ## 🤝 Sources and license
 

@@ -5,7 +5,7 @@ These checks run two small, framework-independent sandbox interfaces. They do no
 The UX skill itself needs none of these dependencies. For development checks, use Node.js 22.20+ and install the pinned Playwright package and Chromium:
 
 ```sh
-cd laws-of-ux-skill/tests/browser
+cd evaluation/laws-of-ux-skill/browser
 npm ci
 npx playwright install chromium
 npm test
