@@ -2,7 +2,15 @@
 
 Date: 2026-10-27.
 
-## Completed checks
+## Improvement review and current checks
+
+A subsequent review found and corrected two reproducible validator issues: locale-dependent reads failed in a non-UTF-8 environment, and invalid/incomplete manifest JSON raised exceptions instead of validation diagnostics. All package reads and test mutations now specify UTF-8. Manifest records are checked before use. The optional validator's Python 3.9 minimum is now documented.
+
+The registration example previously applied its pending guard before canceling the native submit event. Its instructional order is corrected: allow native fallback only when enhancement is unavailable; otherwise prevent default on every submit, then check pending state. The acceptance cases include repeated Enter presses. This is a reviewed pseudocode correction, not a live application test.
+
+Current offline validation and all **13 regression tests** pass, including new non-UTF-8 locale, malformed/incomplete manifest, stale ZIP, missing member/archive, and cache-exclusion cases. The packaging script builds the shareable ZIP and verifies CRC, exact members, and byte equality; `--check` detects drift without rebuilding. The rebuilt ZIP contains 27 package files. No user-facing application or usability study was run in this review.
+
+## Initial release checks
 
 - Source research: the 30 English homepage concepts and eight publicly linked articles were fetched successfully and consulted. Source inventory, URLs, status, and snapshot hashes are recorded in source-manifest.json. The paid book/deck and all external bibliography studies were not verified.
 - Remote URL validation: `python3 -B scripts/validate.py --online` checked 49 distinct public source/documentation URLs. All returned HTTP 200 on this date. This verifies accessibility of the URLs, not scientific accuracy or future availability.

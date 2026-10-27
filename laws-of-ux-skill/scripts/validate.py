@@ -10,7 +10,7 @@ import json
 from pathlib import Path
 import re
 import sys
-from urllib.parse import unquote, urlsplit
+from urllib.parse import unquote
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -23,6 +23,29 @@ CATEGORIES = ['visual-hierarchy-and-perception', 'cognitive-load-and-decision-ma
 
 def anchor(text):
     return re.sub(r'[^\w\s-]', '', text.lower()).replace(' ', '-')
+
+
+def load_manifest(root):
+    """Read the release's source evidence and reject incomplete records clearly."""
+    manifest = json.loads((root / 'tests/source-manifest.json').read_text(encoding='utf-8'))
+    if not isinstance(manifest, dict):
+        raise ValueError('expected an object')
+    for key in ('verified_date', 'inventory_source'):
+        if not isinstance(manifest.get(key), str) or not manifest[key]:
+            raise ValueError('missing or invalid ' + key)
+    for key in ('concepts', 'articles'):
+        if not isinstance(manifest.get(key), list):
+            raise ValueError('missing or invalid ' + key)
+        for row in manifest[key]:
+            if not isinstance(row, dict):
+                raise ValueError(key + ' records must be objects')
+            if not isinstance(row.get('url'), str) or not row['url'].startswith('https://'):
+                raise ValueError(key + ' record needs an HTTPS source URL')
+            if row.get('status') != 200 or not isinstance(row.get('sha256'), str) or not re.fullmatch(r'[0-9a-f]{64}', row['sha256']):
+                raise ValueError(key + ' record needs status 200 and a SHA256 hash')
+            if key == 'concepts' and (not isinstance(row.get('name'), str) or not row['name']):
+                raise ValueError('concept record needs a name')
+    return manifest
 
 
 def validate(root=ROOT):
@@ -41,7 +64,7 @@ def validate(root=ROOT):
             errors.append('Missing required file: ' + name)
     if errors:
         return errors
-    skill = (root / 'SKILL.md').read_text()
+    skill = (root / 'SKILL.md').read_text(encoding='utf-8')
     front = re.match(r'\A---\n(.*?)\n---\n', skill, re.S)
     if not front:
         errors.append('Missing YAML frontmatter')
@@ -54,7 +77,10 @@ def validate(root=ROOT):
             errors.append('Invalid skill description')
     if len(skill.split()) > 1500:
         errors.append('Entrypoint exceeds package context budget (1500 words)')
-    manifest = json.loads((root / 'tests/source-manifest.json').read_text())
+    try:
+        manifest = load_manifest(root)
+    except (OSError, ValueError) as exc:
+        return errors + ['Invalid source manifest: ' + str(exc)]
     concepts = manifest['concepts']
     if len(concepts) != 30 or len({r['url'] for r in concepts}) != 30:
         errors.append('Expected 30 unique verified concepts in this release')
@@ -62,7 +88,7 @@ def validate(root=ROOT):
         errors.append('Expected 8 public articles in this release')
     definitions = {}
     for category in CATEGORIES:
-        text = (root / 'references' / (category + '.md')).read_text()
+        text = (root / 'references' / (category + '.md')).read_text(encoding='utf-8')
         for section in re.split(r'^## ', text, flags=re.M)[1:]:
             name = section.splitlines()[0]
             if name in definitions:
@@ -73,18 +99,18 @@ def validate(root=ROOT):
                     errors.append(name + ': missing nonempty ' + field)
     if set(definitions) != {r['name'] for r in concepts}:
         errors.append('Definitions do not exactly match verified inventory')
-    index = (root / 'references/ux-laws-index.md').read_text()
+    index = (root / 'references/ux-laws-index.md').read_text(encoding='utf-8')
     for row in concepts:
         if row['status'] != 200 or not re.fullmatch(r'[0-9a-f]{64}', row['sha256']):
             errors.append('Invalid source evidence: ' + row['name'])
         if row['url'] not in definitions.get(row['name'], '') or row['url'] not in index:
             errors.append('Missing/mismatched attribution: ' + row['name'])
     for testfile in ['tests/test-prompts.md', 'tests/expected-behaviors.md']:
-        ids = re.findall(r'^## T(\d+):', (root / testfile).read_text(), re.M)
+        ids = re.findall(r'^## T(\d+):', (root / testfile).read_text(encoding='utf-8'), re.M)
         if ids != [str(n) for n in range(1, 8)]:
             errors.append('Expected T1–T7 exactly once and in order: ' + testfile)
     for file in root.rglob('*.md'):
-        text = file.read_text()
+        text = file.read_text(encoding='utf-8')
         for link in re.findall(r'(?<!!)\[[^\]]*\]\(([^)]+)\)', text):
             if re.match(r'https?://', link):
                 continue
@@ -95,7 +121,7 @@ def validate(root=ROOT):
             elif not target.is_file():
                 errors.append('Broken local link: ' + str(file.relative_to(root)) + ': ' + link)
             elif fragment:
-                headings = re.findall(r'^#{1,6} (.+)$', target.read_text(), re.M)
+                headings = re.findall(r'^#{1,6} (.+)$', target.read_text(encoding='utf-8'), re.M)
                 if unquote(fragment) not in [anchor(h) for h in headings]:
                     errors.append('Broken heading link: ' + str(file.relative_to(root)) + ': ' + link)
     return errors
@@ -116,12 +142,12 @@ def main():
     parser.add_argument('--online', action='store_true', help='Also GET external source links')
     args = parser.parse_args()
     errors = validate()
-    if args.online:
-        manifest = json.loads((ROOT / 'tests/source-manifest.json').read_text())
+    if args.online and not errors:
+        manifest = load_manifest(ROOT)
         urls = {manifest['inventory_source']}
         urls.update(r['url'] for r in manifest['concepts'] + manifest['articles'])
         for file in ROOT.rglob('*.md'):
-            urls.update(u.rstrip('.,;:') for u in re.findall(r'https?://[^\s)<>|`]+', file.read_text()))
+            urls.update(u.rstrip('.,;:') for u in re.findall(r'https?://[^\s)<>|`]+', file.read_text(encoding='utf-8')))
         with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
             results = list(pool.map(check_url, sorted(urls)))
         print(json.dumps({'remote_checks': results}, ensure_ascii=False, indent=2))
@@ -137,4 +163,8 @@ def main():
 
 
 if __name__ == '__main__':
+    # Keep diagnostics printable even on terminals with legacy encodings.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, 'reconfigure'):
+            stream.reconfigure(errors='backslashreplace')
     sys.exit(main())

@@ -20,8 +20,9 @@ Integration pseudocode (adapt to existing state and error contracts):
 
 ```text
 on valid native form submit:
+    if enhanced submit is unavailable: allow native submission and return
+    prevent default for every enhanced submit event
     if request already pending: return
-    prevent default only when enhanced submit is available
     keep all field values
     mark pending; prevent duplicate requests; show "Creating account…"
     send using existing security, CSRF, payload, and API conventions
@@ -55,7 +56,7 @@ The button size is an illustrative comfort choice, not a dimension mandated by F
 ## Acceptance cases
 
 - Invalid email gets an associated understandable error; entered values remain.
-- Slow response shows pending and suppresses duplicate submits.
+- Slow response shows pending and suppresses duplicate submits, including repeated Enter presses. Every enhanced submit cancels the native event before checking pending state.
 - Rejected request restores submission and offers recovery.
 - Unknown outcome does not claim definite failure or success without checking.
 - Confirmed success displays the real next step.

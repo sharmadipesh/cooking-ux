@@ -63,11 +63,12 @@ In Claude Code, use `/laws-of-ux-skill` instead. Automatic discovery depends on 
 
 ## Check the package
 
-No third-party Python packages are required for the bundled checks:
+The optional checks require Python 3.9+ and no third-party Python packages:
 
 ```sh
 python3 -B laws-of-ux-skill/scripts/validate.py
 python3 -B -m unittest discover -s laws-of-ux-skill/tests -p 'test_*.py' -v
+python3 -B laws-of-ux-skill/scripts/package.py --check
 ```
 
 The package includes seven realistic design scenarios and expected behaviors. Integrity checks and proposal reviews do not establish live application usability or accessibility conformance; validate changes in the product you are building.

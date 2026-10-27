@@ -2,7 +2,7 @@
 
 A portable, Markdown-first skill for designers, developers, and AI assistants building or evaluating real interfaces. It turns selected UX concepts into concrete decisions, implementation guidance, and validation conditions using **Understand → Analyze → Select principles → Apply → Validate → Explain**.
 
-Start with [SKILL.md](SKILL.md). It routes to four workflows, the verified 30-concept inventory, focused references, realistic examples, and seven behavioral test scenarios. No API, model, JavaScript framework, network connection, or paid source is required for ordinary use. Python 3 is optional for package validation.
+Start with [SKILL.md](SKILL.md). It routes to four workflows, the verified 30-concept inventory, focused references, realistic examples, and seven behavioral test scenarios. No API, model, JavaScript framework, network connection, or paid source is required for ordinary use. Python 3.9+ is optional for package validation.
 
 ## Quick install from GitHub
 
@@ -73,7 +73,7 @@ Share the complete folder or laws-of-ux-skill.zip with its LICENSE and source do
 
 To update: compare the English homepage’s linked concept set with the inventory; inspect added/changed detail pages and articles; verify definitions and caveats; update the inventory, affected entries, source-manifest date/status/hashes, and source notes together. Distinguish new homepage entries from article concepts and supplementary sources. Update agent installation conventions only after checking official documentation. Record inaccessible sources explicitly instead of presenting them as verified.
 
-Run offline structural validation from the package directory:
+Run offline structural validation from the package directory with Python 3.9+:
 
 ```sh
 python3 scripts/validate.py
@@ -85,11 +85,11 @@ Optionally check current remote URLs with `python3 scripts/validate.py --online`
 To rebuild a shareable archive, run this from the parent directory after validating:
 
 ```sh
-python3 -m zipfile -c laws-of-ux-skill.zip laws-of-ux-skill
-python3 -m zipfile -t laws-of-ux-skill.zip
+python3 -B laws-of-ux-skill/scripts/package.py
+python3 -B laws-of-ux-skill/scripts/package.py --check
 ```
 
-Inspect its members and exclude editor artifacts, caches, private files, and unrelated workspace content before sharing.
+The packaging script excludes generated Python caches and common editor artifacts, then compares the ZIP member list and bytes with the package. The `--check` command detects stale downloads without rebuilding them. Review additional files before sharing. After editing the package, rebuild the ZIP before committing.
 
 ## Sources and licensing
 
