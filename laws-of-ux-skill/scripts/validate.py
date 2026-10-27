@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 FIELDS = ['Definition', 'Core idea', 'When to use it', 'Practical UI applications',
           'Implementation guidance', 'Good example', 'Bad example',
           'Trade-offs and limitations', 'Related laws', 'Source']
+IGNORED = {'node_modules', '__pycache__', '.venv', '.git', 'test-results', 'playwright-report'}
 CATEGORIES = ['visual-hierarchy-and-perception', 'cognitive-load-and-decision-making',
               'interaction-and-feedback', 'psychology-and-mental-models']
 
@@ -48,10 +49,16 @@ def load_manifest(root):
     return manifest
 
 
+def markdown_files(root):
+    return (file for file in root.rglob('*.md')
+            if not any(part in IGNORED for part in file.relative_to(root).parts))
+
+
 def validate(root=ROOT):
     errors = []
     required = ['SKILL.md', 'README.md', 'LICENSE', 'references/ux-laws-index.md',
                 'references/source-links.md', 'references/related-concepts.md',
+                'references/component-playbook.md', 'references/decision-and-validation.md',
                 'references/usability-review-checklist.md', 'tests/source-manifest.json',
                 'tests/test-prompts.md', 'tests/expected-behaviors.md',
                 'workflows/design-from-scratch.md', 'workflows/ui-audit.md',
@@ -109,7 +116,7 @@ def validate(root=ROOT):
         ids = re.findall(r'^## T(\d+):', (root / testfile).read_text(encoding='utf-8'), re.M)
         if ids != [str(n) for n in range(1, 8)]:
             errors.append('Expected T1–T7 exactly once and in order: ' + testfile)
-    for file in root.rglob('*.md'):
+    for file in markdown_files(root):
         text = file.read_text(encoding='utf-8')
         for link in re.findall(r'(?<!!)\[[^\]]*\]\(([^)]+)\)', text):
             if re.match(r'https?://', link):
@@ -146,7 +153,7 @@ def main():
         manifest = load_manifest(ROOT)
         urls = {manifest['inventory_source']}
         urls.update(r['url'] for r in manifest['concepts'] + manifest['articles'])
-        for file in ROOT.rglob('*.md'):
+        for file in markdown_files(ROOT):
             urls.update(u.rstrip('.,;:') for u in re.findall(r'https?://[^\s)<>|`]+', file.read_text(encoding='utf-8')))
         with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
             results = list(pool.map(check_url, sorted(urls)))

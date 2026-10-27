@@ -2,7 +2,7 @@
 
 Before editing, inspect repository instructions, the affected route, component library, tests, data shape, and mutation semantics. Reuse the framework and architecture already present.
 
-Translate a selected principle into behavior and an acceptance check:
+Read the relevant section of [the component playbook](../references/component-playbook.md) before implementing a stateful component. Record the task outcome and the routes, payloads, permissions, and interactions that must be preserved. Translate a selected principle into behavior and an acceptance check:
 
 | Need | Implementation direction | Verify |
 |---|---|---|
@@ -14,6 +14,8 @@ Translate a selected principle into behavior and an acceptance check:
 | Honest progress | completed stages from authoritative task state | optional and failed steps do not inflate progress |
 
 Use native elements first. Custom dialogs need a name, sensible initial focus, contained keyboard focus, an accessible close action, and return focus; prefer the existing tested dialog primitive. Menus, comboboxes, and tabs need their appropriate keyboard behavior; a popup is not automatically an ARIA menu.
+
+Do not confuse a rejected request with an unknown outcome: a lost response or generic server/proxy error may follow a completed mutation. Require a domain-specific non-commit guarantee before treating such an error as definitive rejection. Use an existing reconciliation path or explain how to check before an informed retry. Do not invent a status endpoint or silently retry non-idempotent work. For searches and filters, guard result/error/permission updates with the request scope so older responses cannot overwrite newer state.
 
 For forms, use persistent labels, suitable autocomplete/input types, plain instructions, and field-associated errors. Keep values after failure; validate on the server as well. Avoid aggressive normalization of names, credentials, or ambiguous dates. Announce status without flooding assistive technology and move focus deliberately only when needed.
 

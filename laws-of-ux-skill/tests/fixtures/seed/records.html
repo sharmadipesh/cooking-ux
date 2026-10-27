@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Teamline records</title>
+<style>
+:root { font-family: system-ui, sans-serif; color: #182332; background: #f4f6f9; --accent: #1248aa; --space: 1rem; }
+body { margin: 0; padding: 1rem; } main { max-width: 50rem; margin: 2rem auto; padding: 1.5rem; background: white; }
+input,button,a { font: inherit; } input,button { padding: .6rem; } a { color: var(--accent); } table { width: 100%; border-collapse: collapse; } td,th { padding: .7rem; text-align: left; border-bottom: 1px solid #ccc; }
+:focus-visible { outline: 3px solid #164baa; outline-offset: 3px; }
+</style></head>
+<body><main><h1>Team records</h1><form id="filters"><label>Find records <input type="search" name="q"></label><button type="submit">Search</button></form>
+<p><a href="/records/new" id="create">Create record</a> <a href="/api/export" id="export">Export</a></p>
+<p id="status"></p><table><thead><tr><th>Name</th><th>Team</th></tr></thead><tbody></tbody></table></main>
+<script>
+// Existing contracts: GET /api/records?q=<query>; GET /api/export?q=<same query>.
+// URL query key q must hydrate on load and remain navigable via browser back/forward.
+// GET results: 200 {items:[{name,team}], permissions:{canCreate:boolean}}; 403; or 503.
+// Create route /records/new is authorized only by a successful response with canCreate=true.
+// Sandbox requests are intercepted by the browser tests; no real backend is provided.
+const input = document.querySelector('input');
+input.value = new URLSearchParams(location.search).get('q') || '';
+async function load() {
+  const q = input.value;
+  const response = await fetch('/api/records?q=' + encodeURIComponent(q));
+  const data = await response.json();
+  document.querySelector('tbody').replaceChildren();
+  for (const item of data.items || []) {
+    const row = document.createElement('tr');
+    for (const value of [item.name, item.team]) { const cell = document.createElement('td'); cell.textContent=value; row.append(cell); }
+    document.querySelector('tbody').append(row);
+  }
+  document.querySelector('#status').textContent = (data.items || []).length ? '' : 'Nothing here';
+}
+document.querySelector('form').addEventListener('submit',event => {event.preventDefault();history.pushState({},'', '?q='+encodeURIComponent(input.value));load();});
+load();
+</script></body></html>

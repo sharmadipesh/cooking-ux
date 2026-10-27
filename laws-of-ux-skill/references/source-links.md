@@ -30,6 +30,10 @@ All 30 detail-page GET requests returned HTTP 200. Definitions, takeaways, and a
 - [Laws of UX Info](https://lawsofux.com/info/): creator and site license notice.
 - [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/): upstream license identified by the site; no claim that it licenses this independent package as an authorized adaptation.
 
+## Package engineering references
+
+The component playbook and decision/validation guide are original operational synthesis, not additional source-site laws. Optional browser test setup follows [Playwright's official library guidance](https://playwright.dev/docs/library). Repository checks use [GitHub Actions job documentation](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-jobs). These sources support test tooling only, not psychological or usability claims. [RFC 9110, idempotent methods](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.2) and [503 semantics](https://www.rfc-editor.org/rfc/rfc9110.html#section-15.6.4) inform the conservative retry guidance: an application-specific non-commit or idempotency guarantee must not be inferred from a generic error. This implementation inference is not a Laws of UX law.
+
 ## Interpretation and limitations
 
 Definitions are original concise explanations of concepts. UI recommendations, safeguards, code, workflows, categories, priorities, and examples are this package’s synthesis, not quotations or claims of experimental findings. Preserve the difference between historical models, empirical tendencies, and heuristics. No claim is made that every origin citation was independently peer-reviewed or every linked external study was opened. Research checked the English content; translation accuracy was not assessed. No primary concept page or linked public article failed access. Live sources can change; the verification date limits completeness claims.

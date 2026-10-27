@@ -53,6 +53,8 @@ button { min-block-size: 2.75rem; padding-inline: 1rem; }
 
 The button size is an illustrative comfort choice, not a dimension mandated by Fitts. Check rendered contrast, zoom, long error text, and existing focus styles.
 
+For a runnable sandbox implementation and independent browser checks, see [the implementation evaluation](../tests/implementation-evaluation.md). It uses intercepted API responses and is not a production registration service.
+
 ## Acceptance cases
 
 - Invalid email gets an associated understandable error; entered values remain.

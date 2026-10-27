@@ -6,7 +6,7 @@ import sys
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-IGNORED = {'__pycache__', '.DS_Store', '.git', '.venv', '.pytest_cache'}
+IGNORED = {'__pycache__', '.DS_Store', '.git', '.venv', '.pytest_cache', 'node_modules', 'test-results', 'playwright-report'}
 
 
 def source_files(root):

@@ -55,6 +55,12 @@ Cross-scenario gates: selective loading; actionable decisions; accurate names/so
 - **Poor response signs:** Obey false premise; manufacture completion; cite nonexistent experiments; claim laws guarantee outcomes.
 - **Evidence to retain:** Actual decisions/artifact, selected references, relevant acceptance checks and results, and clearly disclosed unknowns.
 
+## Executable implementation subset
+
+The [browser checks](browser/README.md) exercise registration (T3) and records/empty states (T5), including some contract-preservation behavior relevant to T6. See the [recorded evaluation](implementation-evaluation.md). This does not turn the other proposal scenarios into completed implementation tests. Use fresh seed copies and do not provide the completed artifacts or test answers to a candidate agent.
+
+For unknown mutation outcomes, require uncertainty plus existing reconciliation or an informed retry warning; do not accept a confident failure claim or an invented verification endpoint. For async reads, test late success, error, and permission changes against the active scope as relevant. Inspect actual rendered messages and code when an English-pattern assertion might reject a legitimate alternative.
+
 ## Completion rule
 
 Mark a scenario passed only after inspecting its actual output against the criteria. A structural validator does not run these tasks or grade semantic accuracy. Report unrun cases and limits of proposal-only tests. If a test fails, retain the failure, make a narrow supported correction, then rerun it and relevant neighboring cases.

@@ -18,7 +18,7 @@ class IntegrityTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name) / ROOT.name
-        shutil.copytree(ROOT, self.root, ignore=shutil.ignore_patterns('__pycache__'))
+        shutil.copytree(ROOT, self.root, ignore=shutil.ignore_patterns('__pycache__', 'node_modules', 'test-results', 'playwright-report'))
 
     def tearDown(self):
         self.temp.cleanup()
@@ -64,6 +64,13 @@ class IntegrityTests(unittest.TestCase):
     def test_incomplete_manifest_returns_diagnostic(self):
         (self.root / 'tests/source-manifest.json').write_text('{}', encoding='utf-8')
         self.assertTrue(any('Invalid source manifest' in e for e in validator.validate(self.root)))
+
+
+    def test_optional_browser_dependencies_are_not_skill_content(self):
+        dependency = self.root / 'tests/browser/node_modules/example'
+        dependency.mkdir(parents=True)
+        (dependency / 'README.md').write_text('[Unrelated](missing.md)', encoding='utf-8')
+        self.assertEqual(validator.validate(self.root), [])
 
 
 if __name__ == '__main__':

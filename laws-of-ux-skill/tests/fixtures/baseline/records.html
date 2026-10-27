@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teamline records</title>
+<style>
+:root { font-family: system-ui, sans-serif; color: #182332; background: #f4f6f9; --accent: #1248aa; --space: 1rem; }
+* { box-sizing: border-box; }
+body { margin: 0; padding: var(--space); }
+main { max-width: 50rem; margin: 2rem auto; padding: 1.5rem; background: white; }
+h1 { margin-top: 0; } h2 { font-size: 1.15rem; margin-top: 0; }
+p { line-height: 1.5; overflow-wrap: anywhere; }
+input, button, a { font: inherit; }
+input, button { padding: .6rem; }
+a { color: var(--accent); }
+button { cursor: pointer; }
+label { display: block; font-weight: 600; margin-bottom: .5rem; }
+.search-controls, .actions { display: flex; align-items: center; flex-wrap: wrap; gap: .75rem; }
+input { flex: 1 1 14rem; min-width: 0; border: 1px solid #697586; border-radius: .2rem; }
+button, .actions a { min-height: 2.75rem; }
+button { color: inherit; border: 1px solid #697586; border-radius: .2rem; background: #f4f6f9; }
+button[type="submit"] { color: white; background: var(--accent); border-color: var(--accent); }
+.actions { margin-block: var(--space); }
+.actions a { display: inline-flex; align-items: center; padding: .5rem; }
+#status { min-height: 1.5rem; }
+#state { padding: var(--space); background: #f4f6f9; }
+#state p { margin-bottom: 0; }
+.table-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+caption { text-align: left; font-weight: 600; padding-bottom: .5rem; }
+td, th { padding: .7rem; text-align: left; border-bottom: 1px solid #ccc; overflow-wrap: anywhere; vertical-align: top; }
+:focus-visible { outline: 3px solid #164baa; outline-offset: 3px; }
+[hidden] { display: none !important; }
+@media (max-width: 35rem) {
+  body { padding: .5rem; }
+  main { margin: .5rem auto; padding: var(--space); }
+  .search-controls input { flex-basis: 100%; }
+}
+</style>
+</head>
+<body>
+<main>
+  <h1>Team records</h1>
+  <p>Find records and see which team they belong to.</p>
+  <form id="filters" role="search" aria-label="Find team records">
+    <label for="query">Find records</label>
+    <div class="search-controls">
+      <input id="query" type="search" name="q" aria-describedby="search-help">
+      <button type="submit">Search</button>
+      <button type="button" id="clear" hidden>Clear search</button>
+    </div>
+    <p id="search-help">Submit an empty search to view all records.</p>
+  </form>
+  <div class="actions" aria-label="Record actions">
+    <a href="/records/new" id="create" hidden>Create record</a>
+    <a id="export" hidden>Export results</a>
+    <button type="button" id="retry" hidden>Retry</button>
+  </div>
+  <p id="status" role="status" aria-live="polite" aria-atomic="true"></p>
+  <section id="results" aria-label="Search results" aria-busy="false">
+    <div id="state" hidden><h2 id="state-title"></h2><p id="state-detail"></p></div>
+    <div class="table-scroll" hidden>
+      <table>
+        <caption>Team records</caption>
+        <thead><tr><th scope="col">Name</th><th scope="col">Team</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+  <noscript><p>JavaScript is required to search and display team records.</p></noscript>
+</main>
+<script>
+// Existing contracts: GET /api/records?q=<query>; GET /api/export?q=<same query>.
+// URL query key q must hydrate on load and remain navigable via browser back/forward.
+// GET results: 200 {items:[{name,team}], permissions:{canCreate:boolean}}; 403; or 503.
+// Create route /records/new is authorized only by a successful response with canCreate=true.
+// Sandbox requests are intercepted by the browser tests; no real backend is provided.
+const input = document.querySelector('#query');
+const form = document.querySelector('#filters');
+const clear = document.querySelector('#clear');
+const create = document.querySelector('#create');
+const exportLink = document.querySelector('#export');
+const retry = document.querySelector('#retry');
+const status = document.querySelector('#status');
+const results = document.querySelector('#results');
+const state = document.querySelector('#state');
+const table = document.querySelector('.table-scroll');
+const tbody = document.querySelector('tbody');
+let appliedQuery = '';
+let requestId = 0;
+let controller;
+
+function showState(title, detail) {
+  document.querySelector('#state-title').textContent = title;
+  document.querySelector('#state-detail').textContent = detail;
+  state.hidden = false;
+}
+
+async function load(q) {
+  const id = ++requestId;
+  if (controller) controller.abort();
+  controller = new AbortController();
+  appliedQuery = q;
+  clear.hidden = q === '';
+  create.hidden = true;
+  exportLink.hidden = true;
+  exportLink.removeAttribute('href');
+  retry.hidden = true;
+  table.hidden = true;
+  state.hidden = true;
+  tbody.replaceChildren();
+  results.setAttribute('aria-busy', 'true');
+  const context = q === '' ? 'all records' : 'records matching “' + q + '”';
+  status.textContent = 'Loading ' + context + '…';
+
+  try {
+    const response = await fetch('/api/records?q=' + encodeURIComponent(q), {signal: controller.signal});
+    if (id !== requestId) return;
+    if (response.status === 403) {
+      status.textContent = 'Access denied for ' + context + '.';
+      showState('You don’t have access to these records', 'Contact your administrator if you need access.');
+      return;
+    }
+    if (response.status !== 200) throw new Error('Records unavailable');
+    const data = await response.json();
+    if (id !== requestId) return;
+    if (!data || !Array.isArray(data.items) || data.items.some(item => !item || typeof item.name !== 'string' || typeof item.team !== 'string')) {
+      throw new Error('Invalid records response');
+    }
+    create.hidden = data.permissions?.canCreate !== true;
+    const count = data.items.length;
+    status.textContent = count + (count === 1 ? ' record' : ' records') + (q === '' ? ' available.' : ' matching “' + q + '”.');
+    if (count === 0) {
+      if (q === '') {
+        showState('No team records yet', create.hidden ? 'Records will appear here when they are available.' : 'Create a record to get started.');
+      } else {
+        showState('No matching records', 'Try another search, or clear the search to view all records.');
+      }
+      return;
+    }
+    for (const item of data.items) {
+      const row = document.createElement('tr');
+      for (const value of [item.name, item.team]) {
+        const cell = document.createElement('td');
+        cell.textContent = value;
+        row.append(cell);
+      }
+      tbody.append(row);
+    }
+    table.hidden = false;
+    exportLink.href = '/api/export?q=' + encodeURIComponent(q);
+    exportLink.hidden = false;
+  } catch (error) {
+    if (id !== requestId) return;
+    status.textContent = 'Could not load ' + context + '.';
+    showState('Records are temporarily unavailable', 'Your search is kept. Retry to load these records again.');
+    retry.hidden = false;
+  } finally {
+    if (id === requestId) results.setAttribute('aria-busy', 'false');
+  }
+}
+
+function navigate(q) {
+  const url = new URL(location.href);
+  url.searchParams.set('q', q);
+  if (url.href !== location.href) history.pushState({}, '', url);
+  load(q);
+}
+
+form.addEventListener('submit', event => {
+  event.preventDefault();
+  navigate(input.value);
+});
+clear.addEventListener('click', () => {
+  input.value = '';
+  input.focus();
+  navigate('');
+});
+retry.addEventListener('click', () => {
+  // Move focus before hiding Retry so keyboard users retain a predictable location.
+  input.focus();
+  load(appliedQuery);
+});
+function restoreFromUrl() {
+  input.value = new URLSearchParams(location.search).get('q') || '';
+  load(input.value);
+}
+window.addEventListener('popstate', restoreFromUrl);
+restoreFromUrl();
+</script>
+</body>
+</html>

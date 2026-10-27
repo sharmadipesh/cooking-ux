@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Create your account · Teamline</title>
+<style>
+:root { font-family: system-ui, sans-serif; color: #182332; background: #f4f6f9; --accent: #1248aa; --danger: #a21824; --space: 1rem; }
+* { box-sizing: border-box; }
+body { margin: 0; padding: var(--space); line-height: 1.5; }
+main { max-width: 30rem; margin: 2rem auto; padding: 1.5rem; background: white; border-radius: .5rem; }
+h1 { font-size: 1.8rem; line-height: 1.2; margin: 0 0 var(--space); overflow-wrap: anywhere; }
+p { margin: 0 0 var(--space); }
+.field { margin: 1.5rem 0; }
+label { display: block; font-weight: 600; }
+input, button { font: inherit; padding: .75rem; min-height: 3rem; }
+input { display: block; width: 100%; margin: .5rem 0; border: 1px solid #657184; border-radius: .25rem; color: inherit; background: white; }
+input[aria-invalid="true"] { border: 2px solid var(--danger); }
+input[readonly] { background: #f4f6f9; }
+.hint { font-size: .925rem; margin-bottom: 0; }
+button { width: 100%; background: var(--accent); color: white; border: 0; border-radius: .25rem; cursor: pointer; font-weight: 600; white-space: normal; }
+button:disabled { cursor: default; }
+.error { color: var(--danger); }
+.field-error { margin: .5rem 0 0; overflow-wrap: anywhere; }
+#message { margin: var(--space) 0 0; overflow-wrap: anywhere; }
+#message:empty { margin: 0; }
+:focus-visible { outline: 3px solid #164baa; outline-offset: 3px; }
+@media (max-width: 25rem) { main { margin: .5rem auto; padding: var(--space); } h1 { font-size: 1.5rem; } }
+</style>
+</head>
+<body>
+<main>
+<h1>Create your Teamline account</h1>
+<p>Start planning shifts for your small team.</p>
+<p>Both fields are required.</p>
+<form action="/api/register" method="post" id="registration">
+  <div class="field">
+    <label for="email">Email address</label>
+    <input id="email" name="email" type="email" required autocomplete="email" autocapitalize="none" spellcheck="false" aria-describedby="email-hint email-error">
+    <p class="hint" id="email-hint">Use an email address you can access.</p>
+    <p class="field-error error" id="email-error" hidden></p>
+  </div>
+  <div class="field">
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" required minlength="8" autocomplete="new-password" aria-describedby="password-hint password-error">
+    <p class="hint" id="password-hint">Use at least 8 characters. You can paste a password or use a password manager.</p>
+    <p class="field-error error" id="password-error" hidden></p>
+  </div>
+  <button type="submit">Create account</button>
+</form>
+<p id="message" role="status" aria-live="polite" aria-atomic="true"></p>
+</main>
+<script>
+// Existing contract: POST /api/register, JSON {email, password} exactly as typed.
+// Responses: 201 {status:'created'}, 422 {errors:{email:'...'}}, or 503 {message:'...' }.
+// No automatic retry; never persist a password in storage or a URL.
+// This is a local sandbox. Tests intercept requests; no real registration service is provided.
+const form = document.querySelector('#registration');
+const email = document.querySelector('#email');
+const password = document.querySelector('#password');
+const fields = [email, password];
+const submit = form.querySelector('button[type="submit"]');
+const message = document.querySelector('#message');
+let pending = false;
+let created = false;
+
+function showMessage(text, isError = false) {
+  message.textContent = text;
+  message.classList.toggle('error', isError);
+}
+
+function fieldError(field, text = '') {
+  const error = document.getElementById(`${field.id}-error`);
+  error.textContent = text;
+  error.hidden = !text;
+  if (text) field.setAttribute('aria-invalid', 'true');
+  else field.removeAttribute('aria-invalid');
+}
+
+fields.forEach(field => {
+  // Leave native constraint validation and its focus behavior enabled.
+  field.addEventListener('invalid', () => {
+    fieldError(field, field.validationMessage);
+    showMessage('Check the highlighted fields before creating your account.', true);
+  });
+  field.addEventListener('input', () => {
+    fieldError(field);
+    if (!pending && !created) showMessage('');
+  });
+});
+
+form.addEventListener('submit', async event => {
+  event.preventDefault();
+  if (pending || created) return;
+  if (!form.reportValidity()) return;
+  fields.forEach(field => fieldError(field));
+  // Explicit keys keep UI controls out of the API payload. Do not trim credentials.
+  const values = {email: email.value, password: password.value};
+  pending = true;
+  submit.disabled = true;
+  submit.textContent = 'Creating account…';
+  fields.forEach(field => { field.readOnly = true; });
+  form.setAttribute('aria-busy', 'true');
+  showMessage('Creating your account. Please wait.');
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 20000);
+  try {
+    const response = await fetch('/api/register', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(values),
+      signal: controller.signal
+    });
+    // Parsing failures and unexpected responses are uncertain outcomes, never success.
+    const data = await response.json();
+    if (response.status === 201 && data && data.status === 'created') {
+      created = true;
+      password.value = '';
+      showMessage('Account created. Your Teamline account is ready.');
+    } else if (response.status === 422) {
+      const errors = data && data.errors;
+      let firstInvalid;
+      fields.forEach(field => {
+        if (errors && typeof errors[field.name] === 'string' && errors[field.name]) {
+          fieldError(field, errors[field.name]);
+          if (!firstInvalid) firstInvalid = field;
+        }
+      });
+      showMessage(firstInvalid
+        ? 'Your account was not created. Correct the highlighted fields and select Create account again.'
+        : 'Your account was not created. Review your email and password, then select Create account again.', true);
+      // Restore editable fields before moving focus so the error can be corrected.
+      fields.forEach(field => { field.readOnly = false; });
+      if (firstInvalid) firstInvalid.focus();
+    } else if (response.status === 503) {
+      const detail = data && typeof data.message === 'string' ? data.message : '';
+      showMessage(`Registration is temporarily unavailable.${detail ? ' ' + detail : ''} Your entries are still here. Try again by selecting Create account.`, true);
+    } else {
+      showMessage('We could not confirm whether your account was created. Your entries are still here. You can select Create account to try again.', true);
+    }
+  } catch {
+    showMessage(controller.signal.aborted
+      ? 'The request took too long. We could not confirm whether your account was created. Your entries are still here; select Create account to try again.'
+      : 'We could not confirm whether your account was created. Check your connection. Your entries are still here; select Create account to try again.', true);
+  } finally {
+    clearTimeout(timeout);
+    pending = false;
+    form.removeAttribute('aria-busy');
+    fields.forEach(field => { field.readOnly = created; });
+    submit.disabled = created;
+    submit.textContent = created ? 'Account created' : 'Create account';
+  }
+});
+</script>
+</body>
+</html>

@@ -56,6 +56,8 @@ In Claude Code, use `/laws-of-ux-skill` instead. Automatic discovery depends on 
 | [Skill instructions](laws-of-ux-skill/SKILL.md) | The decision process and reference routing |
 | [Full usage guide](laws-of-ux-skill/README.md) | Installation, prompts, sharing, offline use, and updates |
 | [30-concept inventory](laws-of-ux-skill/references/ux-laws-index.md) | Verified concepts and original source links |
+| [Component playbook](laws-of-ux-skill/references/component-playbook.md) | Concrete states, decisions, and checks for common UI patterns |
+| [Decision guidance](laws-of-ux-skill/references/decision-and-validation.md) | Evidence, competing principles, and claim-appropriate validation |
 | [Workflows](laws-of-ux-skill/workflows/) | Design, audit, improvement, and implementation |
 | [Examples](laws-of-ux-skill/examples/) | Practical decisions, an audit, and implementation guidance |
 | [Validation report](laws-of-ux-skill/tests/validation-report.md) | Checks performed and their limitations |
@@ -71,7 +73,7 @@ python3 -B -m unittest discover -s laws-of-ux-skill/tests -p 'test_*.py' -v
 python3 -B laws-of-ux-skill/scripts/package.py --check
 ```
 
-The package includes seven realistic design scenarios and expected behaviors. Integrity checks and proposal reviews do not establish live application usability or accessibility conformance; validate changes in the product you are building.
+The package includes seven design scenarios, two implemented sandbox interfaces, and 13 browser acceptance checks. See [optional browser setup](laws-of-ux-skill/tests/browser/README.md) and [implementation evidence](laws-of-ux-skill/tests/implementation-evaluation.md). Browser checks exercise contracts, states, keyboard paths, and three viewport widths. They do not establish production integration, user outcomes, or full accessibility conformance.
 
 ## Sources and license
 

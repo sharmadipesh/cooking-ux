@@ -1,0 +1,16 @@
+{
+  "name": "cooking-ux-browser-checks",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Optional sandbox browser checks; not required to use the UX skill",
+  "scripts": {
+    "test": "node run.cjs",
+    "test:oracle": "node check-oracle.cjs"
+  },
+  "engines": {
+    "node": ">=22.20.0"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

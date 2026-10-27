@@ -1,0 +1,262 @@
+{
+  "date": "2026-10-27",
+  "environment": {
+    "node": "22.22.2",
+    "playwright": "1.62.1",
+    "chromium": "151.0.7922.34",
+    "host": "macOS arm64"
+  },
+  "baseline_skill_commit": "4a4cb89",
+  "method": "Fresh isolated agent per task and skill version, same seed/task, no access to oracle or other candidates; one attempt each. Independent review corrected final503 handling and strengthened the success oracle. Raw upgraded registration candidate retained. All API responses mocked.",
+  "seed": {
+    "fixtureDir": "tests/fixtures/seed",
+    "negativeSuccessControl": false,
+    "scope": "Sandbox browser behavior; not production integration, user testing, or full accessibility conformance",
+    "cases": [
+      {
+        "name": "registration: persistent labels and native invalid-input prevention",
+        "status": "fail",
+        "error": "locator.fill: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByLabel(/email/i)\n"
+      },
+      {
+        "name": "registration: pending feedback cancels repeated submits and preserves JSON",
+        "status": "fail",
+        "error": "Expected values to be strictly equal:\n\n3 !== 1\n"
+      },
+      {
+        "name": "registration: server field errors retain values, associate text, and allow retry",
+        "status": "fail",
+        "error": "locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByText('This email is already registered.', { exact: true }) to be visible\n"
+      },
+      {
+        "name": "registration: transport failure never claims a confirmed outcome or retries automatically",
+        "status": "fail",
+        "error": "locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByText(/could not confirm|couldn.t confirm|unable to confirm|not confirm|unknown|check.*(email|account)|may have/i).first() to be visible\n"
+      },
+      {
+        "name": "registration: generic service failure preserves mutation uncertainty",
+        "status": "fail",
+        "error": "locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByText(/could not confirm|couldn.t confirm|unable to confirm|not confirm|unconfirmed|unknown|may.*already/i).first() to be visible\n"
+      },
+      {
+        "name": "registration: keyboard path and control containment at mobile/tablet/desktop widths",
+        "status": "pass"
+      },
+      {
+        "name": "records: loading withholds create until authorization is known",
+        "status": "fail",
+        "error": "locator.innerText: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('status')\n"
+      },
+      {
+        "name": "records: new workspace exposes authorized creation, denied access does not",
+        "status": "fail",
+        "error": "locator.innerText: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('status')\n"
+      },
+      {
+        "name": "records: filtered-zero offers recovery and export follows the active query",
+        "status": "fail",
+        "error": "locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: /clear.*(filter|search)|reset.*(filter|search)|show all/i }).or(getByRole('link', { name: /clear.*(filter|search)|reset.*(filter|search)|show all/i })).first() to be visible\n"
+      },
+      {
+        "name": "records: service failure is recoverable and retry preserves the query",
+        "status": "fail",
+        "error": "locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: /retry|try again/i }).or(getByRole('link', { name: /retry|try again/i })).first() to be visible\n"
+      },
+      {
+        "name": "records: browser back restores query, results, and export",
+        "status": "fail",
+        "error": "locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('cell', { name: 'Result first', exact: true }) to be visible\n"
+      },
+      {
+        "name": "records: older response cannot overwrite the active search or restore stale permission",
+        "status": "fail",
+        "error": "Expected values to be strictly equal:\n\n1 !== 0\n"
+      },
+      {
+        "name": "records: readable results and controls remain contained at three widths",
+        "status": "pass"
+      }
+    ],
+    "passed": 2,
+    "failed": 11
+  },
+  "baseline": {
+    "fixtureDir": "tests/fixtures/baseline",
+    "negativeSuccessControl": false,
+    "scope": "Sandbox browser behavior; not production integration, user testing, or full accessibility conformance",
+    "cases": [
+      {
+        "name": "registration: persistent labels and native invalid-input prevention",
+        "status": "pass"
+      },
+      {
+        "name": "registration: pending feedback cancels repeated submits and preserves JSON",
+        "status": "pass"
+      },
+      {
+        "name": "registration: server field errors retain values, associate text, and allow retry",
+        "status": "pass"
+      },
+      {
+        "name": "registration: transport failure never claims a confirmed outcome or retries automatically",
+        "status": "fail",
+        "error": "locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByText(/check[^.!?]{0,70}(email|account)|before[^.!?]{0,35}(retry|try again)|may[^.!?]{0,50}already|duplicate|contact[^.!?]*support|sign.in/i).first() to be visible\n"
+      },
+      {
+        "name": "registration: generic service failure preserves mutation uncertainty",
+        "status": "fail",
+        "error": "locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByText(/could not confirm|couldn.t confirm|unable to confirm|not confirm|unconfirmed|unknown|may.*already/i).first() to be visible\n"
+      },
+      {
+        "name": "registration: keyboard path and control containment at mobile/tablet/desktop widths",
+        "status": "pass"
+      },
+      {
+        "name": "records: loading withholds create until authorization is known",
+        "status": "pass"
+      },
+      {
+        "name": "records: new workspace exposes authorized creation, denied access does not",
+        "status": "pass"
+      },
+      {
+        "name": "records: filtered-zero offers recovery and export follows the active query",
+        "status": "pass"
+      },
+      {
+        "name": "records: service failure is recoverable and retry preserves the query",
+        "status": "pass"
+      },
+      {
+        "name": "records: browser back restores query, results, and export",
+        "status": "pass"
+      },
+      {
+        "name": "records: older response cannot overwrite the active search or restore stale permission",
+        "status": "pass"
+      },
+      {
+        "name": "records: readable results and controls remain contained at three widths",
+        "status": "pass"
+      }
+    ],
+    "passed": 11,
+    "failed": 2
+  },
+  "upgraded_candidate_registration": {
+    "fixtureDir": "tests/fixtures/candidate/registration.html",
+    "negativeSuccessControl": false,
+    "scope": "Sandbox browser behavior; not production integration, user testing, or full accessibility conformance",
+    "cases": [
+      {
+        "name": "registration: persistent labels and native invalid-input prevention",
+        "status": "pass"
+      },
+      {
+        "name": "registration: pending feedback cancels repeated submits and preserves JSON",
+        "status": "pass"
+      },
+      {
+        "name": "registration: server field errors retain values, associate text, and allow retry",
+        "status": "pass"
+      },
+      {
+        "name": "registration: transport failure never claims a confirmed outcome or retries automatically",
+        "status": "pass"
+      },
+      {
+        "name": "registration: generic service failure preserves mutation uncertainty",
+        "status": "fail",
+        "error": "locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByText(/could not confirm|couldn.t confirm|unable to confirm|not confirm|unconfirmed|unknown|may.*already/i).first() to be visible\n    14 × locator resolved to hidden <p>We couldn’t confirm whether your account was crea…</p>\n"
+      },
+      {
+        "name": "registration: keyboard path and control containment at mobile/tablet/desktop widths",
+        "status": "pass"
+      }
+    ],
+    "passed": 5,
+    "failed": 1
+  },
+  "final": {
+    "fixtureDir": "tests/fixtures/completed",
+    "negativeSuccessControl": false,
+    "scope": "Sandbox browser behavior; not production integration, user testing, or full accessibility conformance",
+    "cases": [
+      {
+        "name": "registration: persistent labels and native invalid-input prevention",
+        "status": "pass"
+      },
+      {
+        "name": "registration: pending feedback cancels repeated submits and preserves JSON",
+        "status": "pass"
+      },
+      {
+        "name": "registration: server field errors retain values, associate text, and allow retry",
+        "status": "pass"
+      },
+      {
+        "name": "registration: transport failure never claims a confirmed outcome or retries automatically",
+        "status": "pass"
+      },
+      {
+        "name": "registration: generic service failure preserves mutation uncertainty",
+        "status": "pass"
+      },
+      {
+        "name": "registration: keyboard path and control containment at mobile/tablet/desktop widths",
+        "status": "pass"
+      },
+      {
+        "name": "records: loading withholds create until authorization is known",
+        "status": "pass"
+      },
+      {
+        "name": "records: new workspace exposes authorized creation, denied access does not",
+        "status": "pass"
+      },
+      {
+        "name": "records: filtered-zero offers recovery and export follows the active query",
+        "status": "pass"
+      },
+      {
+        "name": "records: service failure is recoverable and retry preserves the query",
+        "status": "pass"
+      },
+      {
+        "name": "records: browser back restores query, results, and export",
+        "status": "pass"
+      },
+      {
+        "name": "records: older response cannot overwrite the active search or restore stale permission",
+        "status": "pass"
+      },
+      {
+        "name": "records: readable results and controls remain contained at three widths",
+        "status": "pass"
+      }
+    ],
+    "passed": 13,
+    "failed": 0
+  },
+  "oracle_negative_control": {
+    "status": "pass",
+    "method": "Substituted unconfirmed200 during retry; exactly the confirmed-success case failed, as required."
+  },
+  "artifact_sha256": {
+    "tests/fixtures/baseline/records.html": "68bee922348136b28bf39eb11e194c3dd727d347a18278132d41954f530859e9",
+    "tests/fixtures/baseline/registration.html": "67e882cbc827c5a2bd23801f0674060d3dea93a937def3ab6b48c1e992db7cae",
+    "tests/fixtures/candidate/registration.html": "95cb39e5b17a55265158d50794a0bbfd91421817f2cd3b5ac066965599998c7a",
+    "tests/fixtures/completed/records.html": "9454e3dc0adc9a813abc4c878cdfd13f93c62c0931a8e42740d70a7b22c18fe2",
+    "tests/fixtures/completed/registration.html": "cb981db5db0a1075c56ae323538f660276bfafc09419824399fa178aa547550f",
+    "tests/fixtures/seed/records.html": "de0960eda0f70c73e5a64dcaa2c7311d690903bace3e5162f8329116fb945f07",
+    "tests/fixtures/seed/registration.html": "352c7558a8e4dba1bdbd37101b337130d920794be687282ce378c5b0608f6fb8"
+  },
+  "runner_sha256": "810eb5877d1224184b3accf893303c1b373563888d365ac75dc41e98c8b25cc4",
+  "limits": [
+    "Sandbox client behavior, not real backend integration",
+    "One attempt per task/version and final maintainer correction do not establish a general causal improvement",
+    "Two tasks, not all seven implementation scenarios",
+    "English message checks are communication proxies and need human review for valid alternatives",
+    "No representative-user study, assistive-technology audit, or full WCAG conformance"
+  ]
+}

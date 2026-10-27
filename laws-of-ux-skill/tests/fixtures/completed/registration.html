@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Join Teamline</title>
+<style>
+:root { font-family: system-ui, sans-serif; color: #182332; background: #f4f6f9; --accent: #1248aa; --danger: #a21824; --space: 1rem; }
+* { box-sizing: border-box; }
+body { margin: 0; padding: var(--space); line-height: 1.5; }
+main { max-width: 30rem; margin: 2rem auto; padding: 1.5rem; background: white; border-radius: .5rem; overflow-wrap: anywhere; }
+h1 { font-size: 1.75rem; line-height: 1.2; margin: 0 0 var(--space); }
+p { margin: 0 0 var(--space); }
+.field { margin-block: 1.5rem; }
+label { display: block; font-weight: 650; }
+.hint { font-size: .9375rem; margin-block: .25rem .5rem; }
+input,button { font: inherit; padding: .75rem; }
+input[type="email"],input[type="password"],input[type="text"] { display: block; width: 100%; min-width: 0; border: 1px solid #667282; border-radius: .25rem; background: white; color: inherit; }
+button { min-height: 2.75rem; background: var(--accent); color: white; border: 1px solid var(--accent); border-radius: .25rem; cursor: pointer; }
+button:disabled { cursor: default; opacity: .7; }
+.secondary { background: white; color: var(--accent); margin-top: .5rem; }
+.submit { width: 100%; }
+.error { color: var(--danger); margin-block: .5rem 0; overflow-wrap: anywhere; }
+[aria-invalid="true"] { border: 2px solid var(--danger) !important; }
+#message { margin-top: var(--space); overflow-wrap: anywhere; }
+#message:empty { margin: 0; }
+#recovery { margin-block: var(--space); padding: var(--space); border: 1px solid #667282; border-radius: .25rem; }
+.check { display: flex; gap: .65rem; align-items: flex-start; font-weight: 400; cursor: pointer; padding-block: .5rem; }
+.check input { flex: 0 0 auto; width: 1.25rem; height: 1.25rem; margin: .15rem 0 0; padding: 0; }
+:focus-visible { outline: 3px solid #164baa; outline-offset: 3px; }
+[hidden] { display: none !important; }
+@media (max-width: 25rem) { main { padding: var(--space); margin-block: var(--space); } }
+</style></head>
+<body><main><h1>Create your Teamline account</h1><p>Plan shifts with your team. Start with your email address and a password.</p>
+<p class="hint">Both fields are required.</p>
+<form action="/api/register" method="post" id="registration">
+<div class="field">
+<label for="email">Email address</label>
+<p id="email-hint" class="hint">Use an email address you can access.</p>
+<input id="email" name="email" type="email" required autocomplete="email" inputmode="email" autocapitalize="none" spellcheck="false" aria-describedby="email-hint email-error">
+<p id="email-error" class="error" hidden></p>
+</div>
+<div class="field">
+<label for="password">Password</label>
+<p id="password-hint" class="hint">Use at least 8 characters.</p>
+<input id="password" name="password" type="password" required minlength="8" autocomplete="new-password" aria-describedby="password-hint password-error">
+<button id="toggle-password" class="secondary" type="button" aria-controls="password" aria-pressed="false" hidden>Show password</button>
+<p id="password-error" class="error" hidden></p>
+</div>
+<div id="recovery" hidden>
+<p>We couldn’t confirm whether your account was created. Check through any account access or support options you already have before trying again. Retrying may repeat an account creation that already completed.</p>
+<label class="check" for="retry-confirm"><input id="retry-confirm" type="checkbox">I understand my account may already exist and want to try again.</label>
+</div>
+<button class="submit" type="submit">Create account</button>
+<p id="message" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></p>
+</form></main>
+<script>
+// Existing contract: POST /api/register, JSON {email, password} exactly as typed.
+// Responses: 201 {status:'created'}, 422 {errors:{email:'...'}}, or 503 {message:'...' }.
+// No automatic retry; never persist a password in storage or a URL.
+// This is a local sandbox. Tests intercept requests; no real registration service is provided.
+const form = document.querySelector('#registration');
+const email = document.querySelector('#email');
+const password = document.querySelector('#password');
+const submit = form.querySelector('[type="submit"]');
+const message = document.querySelector('#message');
+const recovery = document.querySelector('#recovery');
+const retryConfirm = document.querySelector('#retry-confirm');
+const togglePassword = document.querySelector('#toggle-password');
+let pending = false;
+let completed = false;
+let uncertain = false;
+
+function clearFieldError(input) {
+  input.removeAttribute('aria-invalid');
+  const error = document.querySelector('#' + input.id + '-error');
+  error.textContent = '';
+  error.hidden = true;
+}
+function setFieldError(input, text) {
+  input.setAttribute('aria-invalid', 'true');
+  const error = document.querySelector('#' + input.id + '-error');
+  error.textContent = text;
+  error.hidden = false;
+}
+function hidePassword() {
+  password.type = 'password';
+  togglePassword.textContent = 'Show password';
+  togglePassword.setAttribute('aria-pressed', 'false');
+}
+function unknownOutcome() {
+  uncertain = true;
+  recovery.hidden = false;
+  retryConfirm.checked = false;
+  retryConfirm.required = true;
+  message.textContent = 'Account creation is unconfirmed. Read the recovery guidance before retrying.';
+  message.focus();
+}
+for (const input of [email, password]) {
+  input.addEventListener('input', () => clearFieldError(input));
+}
+togglePassword.hidden = false;
+togglePassword.addEventListener('click', () => {
+  const show = password.type === 'password';
+  password.type = show ? 'text' : 'password';
+  togglePassword.textContent = show ? 'Hide password' : 'Show password';
+  togglePassword.setAttribute('aria-pressed', String(show));
+});
+form.addEventListener('submit', async event => {
+  // Prevent the browser submission even for programmatically dispatched duplicates.
+  event.preventDefault();
+  if (pending || completed) return;
+  if (!form.reportValidity()) return;
+  if (uncertain && !retryConfirm.checked) {
+    retryConfirm.focus();
+    return;
+  }
+  const values = {email: email.value, password: password.value};
+  clearFieldError(email);
+  clearFieldError(password);
+  pending = true;
+  submit.disabled = true;
+  submit.textContent = 'Creating account…';
+  email.readOnly = true;
+  password.readOnly = true;
+  togglePassword.disabled = true;
+  retryConfirm.disabled = true;
+  form.setAttribute('aria-busy', 'true');
+  message.textContent = 'Creating your account. Please wait…';
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 30000);
+  try {
+    const response = await fetch('/api/register', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(values),signal:controller.signal});
+    const data = await response.json();
+    if (response.status === 201 && data && data.status === 'created') {
+      completed = true;
+      uncertain = false;
+      recovery.hidden = true;
+      retryConfirm.required = false;
+      password.value = '';
+      hidePassword();
+      message.textContent = 'Your Teamline account has been created.';
+      message.focus();
+    } else if (response.status === 422 && data && data.errors && typeof data.errors === 'object' && !Array.isArray(data.errors)) {
+      uncertain = false;
+      recovery.hidden = true;
+      retryConfirm.required = false;
+      let firstInvalid;
+      for (const input of [email, password]) {
+        if (typeof data.errors[input.name] === 'string' && data.errors[input.name]) {
+          setFieldError(input, data.errors[input.name]);
+          if (!firstInvalid) firstInvalid = input;
+        }
+      }
+      message.textContent = firstInvalid ? 'Account not created. Correct the highlighted details and try again. Your entries are kept.' : 'Account not created. Review your email and password and try again. Your entries are kept.';
+      // Focus is moved after the fields become editable below.
+      requestAnimationFrame(() => (firstInvalid || message).focus());
+    } else if (response.status === 503) {
+      // A generic service/proxy failure does not guarantee that creation never committed.
+      // The sandbox contract supplies no authoritative non-commit or idempotency guarantee.
+      unknownOutcome();
+    } else {
+      unknownOutcome();
+    }
+  } catch {
+    // Lost or unreadable responses do not prove the mutation failed.
+    unknownOutcome();
+  } finally {
+    clearTimeout(timeout);
+    pending = false;
+    form.removeAttribute('aria-busy');
+    email.readOnly = completed;
+    password.readOnly = completed;
+    togglePassword.disabled = completed;
+    retryConfirm.disabled = false;
+    submit.disabled = completed;
+    submit.textContent = completed ? 'Account created' : uncertain ? 'Try creating account again' : 'Create account';
+  }
+});
+</script></body></html>

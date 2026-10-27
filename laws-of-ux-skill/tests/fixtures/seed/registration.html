@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Join Teamline</title>
+<style>
+:root { font-family: system-ui, sans-serif; color: #182332; background: #f4f6f9; --accent: #1248aa; --danger: #a21824; --space: 1rem; }
+body { margin: 0; padding: 1rem; } main { max-width: 30rem; margin: 2rem auto; padding: 1.5rem; background: white; }
+input,button { font: inherit; padding: .75rem; } input { display: block; margin: 1rem 0; } button { background: var(--accent); color: white; border: 0; }
+.error { color: var(--danger); } :focus-visible { outline: 3px solid #164baa; outline-offset: 3px; }
+</style></head>
+<body><main><h1>Create your Teamline account</h1><p>Plan shifts with your team.</p>
+<form action="/api/register" method="post" id="registration">
+<input name="email" type="email" required placeholder="Email address">
+<input name="password" type="password" required minlength="8" placeholder="Password">
+<button type="submit">Create account</button><p id="message"></p>
+</form></main>
+<script>
+// Existing contract: POST /api/register, JSON {email, password} exactly as typed.
+// Responses: 201 {status:'created'}, 422 {errors:{email:'...'}}, or 503 {message:'...' }.
+// No automatic retry; never persist a password in storage or a URL.
+// This is a local sandbox. Tests intercept requests; no real registration service is provided.
+const form = document.querySelector('form');
+form.addEventListener('submit', async event => {
+  event.preventDefault();
+  const values = Object.fromEntries(new FormData(form));
+  try {
+    const response = await fetch('/api/register', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(values)});
+    const data = await response.json();
+    document.querySelector('#message').textContent = response.ok ? 'Welcome!' : data.message || 'Please try again';
+    if (!response.ok) form.reset();
+  } catch { document.querySelector('#message').textContent = 'Failed. Submit again.'; }
+});
+</script></body></html>

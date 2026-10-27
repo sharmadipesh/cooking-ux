@@ -45,5 +45,15 @@ class ArchiveTests(unittest.TestCase):
         self.assertTrue(any('Cannot read archive' in e for e in package.check_archive(self.root, self.archive)))
 
 
+    def test_optional_browser_dependencies_are_not_distributed(self):
+        dependency = self.root / 'tests/browser/node_modules/example'
+        dependency.mkdir(parents=True)
+        (dependency / 'index.js').write_text('/* external dependency */', encoding='utf-8')
+        package.build_archive(self.root, self.archive)
+        import zipfile
+        with zipfile.ZipFile(self.archive) as z:
+            self.assertEqual(z.namelist(), [self.root.name + '/SKILL.md'])
+
+
 if __name__ == '__main__':
     unittest.main()

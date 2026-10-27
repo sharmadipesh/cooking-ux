@@ -2,13 +2,23 @@
 
 Date: 2026-10-27.
 
-## Improvement review and current checks
+## Skill upgrade: implemented sandbox validation
+
+The entrypoint now selects the requested deliverable explicitly, uses a concrete evidence/mechanism/change/check chain, and routes to component and decision playbooks. Detailed guidance covers unknown mutation recovery, async request scope, truthful data states, permissions, navigation, responsive hierarchy, and competing principles. Original law definitions and source attribution remain unchanged.
+
+Two fresh agents implemented actual interfaces using the upgraded skill. Review corrected generic 503 handling in the final reference and strengthened a success assertion; an explicit negative-control run confirms that unconfirmed responses are rejected by the oracle. The independent browser suite passes all **13 acceptance checks** across the completed registration and records fixtures. The prior-skill artifacts pass 11/13; the observed gaps concerned recovery guidance after an unknown mutation outcome and generic server-error handling. This small comparison is not a general causal claim. See [the implementation evaluation](implementation-evaluation.md) and its artifact/result evidence.
+
+All **15 Python integrity/packaging regression tests** pass. New checks ensure optional browser dependencies are neither scanned as skill content nor included in the ZIP. Browser dependencies are pinned and optional; core skill use stays offline and framework independent. A repository workflow is configured for Linux/Windows package validation on Python 3.9/3.13 and a Chromium acceptance job; remote run results must be checked separately before claiming CI success.
+
+The entrypoint is approximately 1,038 whitespace-separated words. The ZIP includes the updated skill, focused references, original law inventory, fixture artifacts, and optional test runner, with generated dependencies/caches excluded.
+
+## Earlier validator improvement checks
 
 A subsequent review found and corrected two reproducible validator issues: locale-dependent reads failed in a non-UTF-8 environment, and invalid/incomplete manifest JSON raised exceptions instead of validation diagnostics. All package reads and test mutations now specify UTF-8. Manifest records are checked before use. The optional validator's Python 3.9 minimum is now documented.
 
 The registration example previously applied its pending guard before canceling the native submit event. Its instructional order is corrected: allow native fallback only when enhancement is unavailable; otherwise prevent default on every submit, then check pending state. The acceptance cases include repeated Enter presses. This is a reviewed pseudocode correction, not a live application test.
 
-Current offline validation and all **13 regression tests** pass, including new non-UTF-8 locale, malformed/incomplete manifest, stale ZIP, missing member/archive, and cache-exclusion cases. The packaging script builds the shareable ZIP and verifies CRC, exact members, and byte equality; `--check` detects drift without rebuilding. The rebuilt ZIP contains 27 package files. No user-facing application or usability study was run in this review.
+At that review, offline validation and all **13 regression tests** passed, including new non-UTF-8 locale, malformed/incomplete manifest, stale ZIP, missing member/archive, and cache-exclusion cases. The packaging script builds the shareable ZIP and verifies CRC, exact members, and byte equality; `--check` detects drift without rebuilding. The rebuilt ZIP contains 27 package files. No user-facing application or usability study was run in this review.
 
 ## Initial release checks
 
@@ -26,9 +36,9 @@ On 2026-10-27, the third-party Skills CLI discovered the skill directly from the
 
 ## Limits
 
-No application repository, implementation fixture, live product, or representative user study was supplied for scenario execution. The proposal smoke pass therefore does not establish successful frontend implementation, runtime behavior, accessibility conformance, or usability outcomes. Implementation acceptance checks remain documented for a recipient to run against real fixtures. Structural checks cannot prove recommendation quality. The example form is illustrative and was not run as an application.
+At the initial release, no application repository, implementation fixture, live product, or representative user study was supplied. That proposal smoke pass does not establish successful frontend implementation, runtime behavior, accessibility conformance, or usability outcomes; the later sandbox evaluation above adds narrower implementation evidence. Implementation acceptance checks remain documented for a recipient to run against real fixtures. Structural checks cannot prove recommendation quality. The example form is illustrative and was not run as an application.
 
-The main entrypoint is approximately 864 whitespace-separated words, with detail loaded from focused references. Runtime use requires no internet access. No copied source article corpus, artwork, paid content, or third-party code dependencies are bundled.
+The initial entrypoint was approximately 864 whitespace-separated words, with detail loaded from focused references. Runtime use requires no internet access. No copied source article corpus, artwork, paid content, or third-party code dependencies are bundled.
 
 ## Archive verification
 
